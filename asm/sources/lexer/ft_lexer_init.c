@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_disass_del.c                                    :+:      :+:    :+:   */
+/*   ft_lexer_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/11/12 23:20:16 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/11/15 08:19:05 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_disass.h"
-#include "ft_string.h"
-#include <unistd.h>
+# include "ft_lexer.h"
 
-static void	ft_disass_del_label(t_list *it)
+static int	ft_lexer_init_split(int const c)
 {
-	t_label	*label;
-
-	label = C_LABEL(it);
-	ft_memdel((void **)&label);
+	return ('\n' == c);
 }
 
-static void	ft_disass_del_instr(t_list *it)
+void	ft_lexer_init(t_lexer *lexer, char const *file, char const *file_content)
 {
-	t_instr_node	*instr;
-
-	instr = C_INSTR(it);
-	ft_instruction_del(&instr->instr);
-	ft_memdel((void **)&instr);
-}
-
-void 		ft_disass_del(t_disass *dsm)
-{
-	close(dsm->fd_in);
-	close(dsm->fd_out);
-	ft_list_apply(&dsm->label_head, &ft_disass_del_label);
-	ft_list_apply(&dsm->instr_head, &ft_disass_del_instr);
+	ft_memset(&lexer->loc, 0, sizeof(lexer->loc));
+	lexer->loc.tab = ft_strsplit(file_content, &ft_lexer_init_split);
+	INIT_LIST_HEAD(lexer->token_head);
+	lexer->loc.pc = file_content;
+	lexer->loc.file = file;
 }

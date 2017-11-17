@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_disass_del.c                                    :+:      :+:    :+:   */
+/*   ft_parse_label.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/11/12 23:20:16 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/11/10 00:14:39 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_disass.h"
-#include "ft_string.h"
-#include <unistd.h>
+# include "ft_printf.h"
+# include "ft_parser.h"
+# include "ft_label.h"
 
-static void	ft_disass_del_label(t_list *it)
+int			ft_parse_label(t_token *token, int address, t_list *head)
 {
+	t_list	*it;
 	t_label	*label;
 
-	label = C_LABEL(it);
-	ft_memdel((void **)&label);
-}
-
-static void	ft_disass_del_instr(t_list *it)
-{
-	t_instr_node	*instr;
-
-	instr = C_INSTR(it);
-	ft_instruction_del(&instr->instr);
-	ft_memdel((void **)&instr);
-}
-
-void 		ft_disass_del(t_disass *dsm)
-{
-	close(dsm->fd_in);
-	close(dsm->fd_out);
-	ft_list_apply(&dsm->label_head, &ft_disass_del_label);
-	ft_list_apply(&dsm->instr_head, &ft_disass_del_instr);
+	/* Check if label with same name is already defined */
+	it = head->next;
+	while (it != head)
+	{
+		label = C_LABEL(it);
+		if (0 == ft_strcmp(token->data->str, label->data->str))
+			return (0);
+		it = it->next;
+	}
+	/* Add label */
+	label = (t_label *)ft_memalloc(sizeof(t_label));
+	label->address = address;
+	label->data = token->data;
+	ft_list_add_tail(&label->list, head);
+	return (1);
 }

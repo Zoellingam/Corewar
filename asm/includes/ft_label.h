@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_disass_del.c                                    :+:      :+:    :+:   */
+/*   ft_label.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/11/12 23:20:16 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/11/07 13:16:29 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_disass.h"
-#include "ft_string.h"
-#include <unistd.h>
+#ifndef FT_LABEL_H
+# define FT_LABEL_H
 
-static void	ft_disass_del_label(t_list *it)
+# include "ft_string.h"
+# include "ft_list.h"
+
+typedef struct			s_label
 {
-	t_label	*label;
+	int					address;
+	t_string			*data;
+	t_list				list;
+}						t_label;
 
-	label = C_LABEL(it);
-	ft_memdel((void **)&label);
-}
+#define C_LABEL(it)		CONTAINEROF(it, t_label, list)
 
-static void	ft_disass_del_instr(t_list *it)
-{
-	t_instr_node	*instr;
-
-	instr = C_INSTR(it);
-	ft_instruction_del(&instr->instr);
-	ft_memdel((void **)&instr);
-}
-
-void 		ft_disass_del(t_disass *dsm)
-{
-	close(dsm->fd_in);
-	close(dsm->fd_out);
-	ft_list_apply(&dsm->label_head, &ft_disass_del_label);
-	ft_list_apply(&dsm->instr_head, &ft_disass_del_instr);
-}
+#endif
