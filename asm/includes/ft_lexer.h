@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lexer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
+/*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/11/15 08:18:50 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/01/13 15:39:29 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ t_token				*ft_lexer_read(t_lexer *lexer);
 void				ft_lexer_relocate(t_location *loc, size_t count);
 
 void				ft_lexer_init(t_lexer *lexer, char const *file_name, char const *file_content);
+void				ft_lexer_del(t_lexer *lexer);
 
 t_token 			*ft_lex_reg(t_location *loc);
 t_token 			*ft_lex_dir(t_location *loc);
@@ -80,6 +81,8 @@ t_token 			*ft_lex_ind(t_location *loc);
 t_token 			*ft_lex_word(t_location *loc);
 t_token 			*ft_lex_label(t_location *loc);
 t_token				*ft_lex_header(t_location *loc);
+
 t_token 			*ft_token_new(char const *data, size_t len, int kind, t_location *loc);
+void				ft_token_del(t_list *it);
 
 #endif

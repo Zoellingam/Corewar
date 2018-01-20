@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_resolve_label.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
+/*   By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/11/17 08:52:28 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/01/20 22:00:07 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@ static int	ft_parse_resolve_lookup(t_lexer *lexer, t_statement *st, t_list *head
 {
 	t_instr_encode	*arg;
 	t_list			*it;
+	int 			diff;
 	int 			i;
 
 	/* for each instruction's parameter */
 	i = 0;
 	while (i < st->instr->op->nb_args)
 	{
-		arg = &st->instr->args.encode[i];
+		arg = &st->instr->args[i];
 		/* If we found a T_LAB type */
 		if (T_LAB & arg->type)
 		{
@@ -41,15 +42,16 @@ static int	ft_parse_resolve_lookup(t_lexer *lexer, t_statement *st, t_list *head
 			if (0 == it)
 			{
 				/* Label does not exist. Abort */
-				ft_error(&lexer->loc, st->token[i], "Label %s is missing\n", arg->data);
+				ft_error(&lexer->loc, st->token[i], "Label %s is missing", arg->data);
 				return (0);
 			}
-			/* Unset the LABEL flag */
-			arg->type ^= T_LAB;
+			diff = C_LABEL(it)->address - (st)->address;
 			/* Update the token value. It now equals the diff
 			   between the label position and our current instruction position */
-
-			ft_endian_apply_conversion((void *)arg->data, C_LABEL(it)->address - st->address, arg->size);
+			if (2 == arg->size)
+				*(int16_t *)arg->data = ft_endian_convert_int16((int16_t)diff);
+			else
+				*(int32_t *)arg->data = ft_endian_convert_int32((int32_t)diff);
 		}
 		++i;
 	}

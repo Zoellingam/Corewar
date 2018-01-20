@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+         #
+#    By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2017/11/18 15:23:52 by Zoellingam       ###   ########.fr        #
+#    Updated: 2018/01/20 22:25:43 by Zoellingam       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,32 +18,13 @@ NAME 			:= corewar
 
 INCS 			:= includes
 SRCS 			:= sources
-DLIB 			:= $(CUR_PROJECT_PWD)/libs
+DLIB 			:= $(CUR_PROJECT_PWD)/libft
 COMN			:= $(CUR_PROJECT_PWD)/common
 OBJS 			:= objs
 
-LIB  			:= 	libstr   \
-					libopt	 \
-					liblog   \
-					liblist  \
-					libctype \
-					libprintf
+INCLUDES 		:= -I$(COMN) -I$(INCS) -I$(DLIB)/$(INCS)
 
-INCLUDES 		:= -I$(INCS)
-INCLUDES 		+= -I$(COMN)/
-INCLUDES		+= -I$(DLIB)/libstr/$(INCS)
-INCLUDES		+= -I$(DLIB)/libopt/$(INCS)
-INCLUDES		+= -I$(DLIB)/liblog/$(INCS)
-INCLUDES		+= -I$(DLIB)/liblist/$(INCS)
-INCLUDES		+= -I$(DLIB)/libctype/$(INCS)
-INCLUDES		+= -I$(DLIB)/libprintf/$(INCS)
-
-LIBS 	 		+= -L $(DLIB)/libstr/ -lstr
-LIBS 	 		+= -L $(DLIB)/libopt/ -lopt
-LIBS 	 		+= -L $(DLIB)/liblog/ -llog
-LIBS 	 		+= -L $(DLIB)/liblist/ -llist
-LIBS 	 		+= -L $(DLIB)/libctype/ -lctype
-LIBS			+= -L $(DLIB)/libprintf/ -lprintf
+LIBS			:= -lncurses -L $(DLIB) -lft
 
 # Search source files
 C_FILES			:= $(shell find $(SRCS) -type f)
@@ -53,9 +34,9 @@ C_DIRS			+= $(COMN)
 
 # Add to C_FLAGS
 ifeq ($(DEBUG),1)
-C_FLAGS		 	:= -MMD -g -DDEBUG -Wall -Wextra -Werror -std=c89 -pedantic
+C_FLAGS		 	:= -MMD -g -DDEBUG -Wall -Wextra -Werror
 else
-C_FLAGS		 	:= -MMD -g -Wall -Wextra -Werror -std=c89 -pedantic
+C_FLAGS		 	:= -MMD -g -Wall -Wextra -Werror
 endif
 
 # Build .o files
@@ -81,34 +62,19 @@ all:
 	@make $(NAME)
 
 $(NAME): $(O_FILES)
-	@make -C "$(DLIB)/libstr/";
-	@make -C "$(DLIB)/liblist/";
-	@make -C "$(DLIB)/libopt/";
-	@make -C "$(DLIB)/libctype/";
-	@make -C "$(DLIB)/libprintf/";
-	@make -C "$(DLIB)/liblog/";
+	@make -C "$(DLIB)";
 	@gcc $(C_FLAGS) $(INCLUDES) $(LIBS) -o $@ $(O_FILES) && $(PRINT_GREEN) $@ || exit
 
 $(OBJS)/%.o: %.c
 	@gcc $(C_FLAGS) $(INCLUDES) -o $@ -c $< && $(eval COUNT+=1) $(PRINT_RED) $< || exit
 
 clean:
-	@make -C "$(DLIB)/libstr/" clean;
-	@make -C "$(DLIB)/libopt/" clean;
-	@make -C "$(DLIB)/liblist/" clean;
-	@make -C "$(DLIB)/libctype/" clean;
-	@make -C "$(DLIB)/libprintf/" clean;
-	@make -C "$(DLIB)/liblog/" clean;
+	@make -C "$(DLIB)" clean;
 	@rm -rf $(O_FILES) $(OBJS) 2> /dev/null
 
 fclean: clean
-	@make -C "$(DLIB)/libstr/" fclean;
-	@make -C "$(DLIB)/libopt/" fclean;
-	@make -C "$(DLIB)/liblist/" fclean;
-	@make -C "$(DLIB)/libctype/" fclean;
-	@make -C "$(DLIB)/libprintf/" fclean;
-	@make -C "$(DLIB)/liblog/" fclean;
-	@rm -f $(NAME) $(TEST) 2> /dev/null
+	@make -C "$(DLIB)" fclean;
+	@rm -f "$(NAME)";
 
 re: fclean all
 

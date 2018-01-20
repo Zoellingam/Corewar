@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lex_ind.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
+/*   By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/11/16 23:39:26 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/01/20 21:49:57 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_lexer.h"
-# include "ft_ctype.h"
-# include "ft_printf.h"
+#include "ft_lexer.h"
+#include "ft_ctype.h"
+#include "ft_printf.h"
 
 static t_token	*ft_lex_ind_value(t_location *loc, char const *p)
 {

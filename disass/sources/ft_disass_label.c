@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_disass_label.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
+/*   By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/11/16 20:58:40 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/12/14 10:03:30 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ static void		ft_label_build(t_disass *dsm)
 		   That means, we iterate over instructions that uses label explicitely
 		   as parameters (fork, zjmp, lfork).
 		   We do not creat useless label that obufscate the code with empty data */
-		if (0 != ist->args.decode[0].data && (9 == x || 12 == x || 15 == x))
+		if (0 != ist->args[0].data && (9 == x || 12 == x || 15 == x))
 		{
 			x = DISASS_JUMP(dsm->header.prog_size,
-				C_INSTR(it)->byte_pos, ist->args.decode[0].data);
+				C_INSTR(it)->byte_pos, ist->args[0].data);
 			/* Look if any label exist at target position. Create
 			   a new one if not. */
 			C_INSTR(it)->label_ref[0] = ft_create_label(dsm, x, 1);
@@ -109,13 +109,13 @@ static void		ft_label_reach(t_disass *dsm)
 		{
 			/* if argument type is T_REG or if a label pointer
 			   already exist, we need to pass */
-			if (T_REG == list->instr->args.decode[i].type || 0 != list->label_ref[i])
+			if (T_REG == list->instr->args[i].type || 0 != list->label_ref[i])
 			{
 				++i;
 				continue ;
 			}
 			tmp = DISASS_JUMP(dsm->header.prog_size,
-				list->byte_pos, list->instr->args.decode[i].data);
+				list->byte_pos, list->instr->args[i].data);
 			/* Look if any label exist at target position. Do
 			   not create a new one if not. */
 			list->label_ref[i] = ft_create_label(dsm, tmp, 0);

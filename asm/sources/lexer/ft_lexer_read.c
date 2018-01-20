@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lexer_read.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
+/*   By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/11/16 23:25:56 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/01/20 18:27:00 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,28 @@
 
 static int	ft_lexer_skip(t_location *loc)
 {
-	/* Skip tout les espaces/tabultations */
+	/* Skip every space, but no endline */
 	if (0 != ft_isspace(loc->pc[0]) && '\n' != loc->pc[0])
 	{
+		/* Advance lexer by 1 char */
 		ft_lexer_relocate(loc, 1);
+		/* Advance lexer by one char as long as we pars that space */
 		while (0 != ft_isspace(loc->pc[0]) && '\n' != loc->pc[0])
+			ft_lexer_relocate(loc, 1);
+		/* Return true since we parsed at least one space */
+		return (1);
+	}
+	/* Comment, skip everything untile endline; */
+	if (COMMENT_CHAR == loc->pc[0] || ';' == loc->pc[0])
+	{
+		/* Advance lexer by 1 char */
+		ft_lexer_relocate(loc, 1);
+		/* Skip everything untile endline */
+		while (0 != loc->pc[0] && '\n' != loc->pc[0])
 			ft_lexer_relocate(loc, 1);
 		return (1);
 	}
-	/* commentaire: skip tout jusqu'a la prochaine ligne */
-	if (COMMENT_CHAR == loc->pc[0] || ';' == loc->pc[0])
-	{
-		++loc->pc;
-		while (0 != loc->pc[0] && '\n' != loc->pc[0])
-			++loc->pc;
-		return (1);
-	}
+	/* Return false: we matched no space nor comment */
 	return (0);
 }
 
@@ -58,6 +64,8 @@ t_token		*ft_lexer_read(t_lexer *lexer)
 	i = 0;
 	while (i < sizeof(g_lex_rule) / sizeof(g_lex_rule[0]))
 	{
+		/* Try every rules from g_lex_rule. Add to the lexer list
+		   the first token that succeeded */
 		p = g_lex_rule[i](&lexer->loc);
 		if (0 != p)
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_instruction.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
+/*   By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/11/17 20:42:32 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/01/20 21:59:52 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,17 @@ static int		ft_parse_instruction_separator(t_lexer *lexer)
 
 static char		**ft_parse_instruction_init(t_lexer *lexer, t_token *instr)
 {
+	/* Let the tab be static. No need to handle memory */
 	static char	*tab[4];
 	t_token		*token;
 	t_op		*op;
 	int			i;
 
+	/* Get g_op_tab ptr from instruction opcode */
 	op = &g_op_tab[instr->param_op];
+
 	/* tab[0]    = instruction name;
 	   tab[1..N] = instruction arguments. */
-/*	tab = ft_memalloc((1 + op->nb_args) * sizeof(char *)); */
 	tab[0] = instr->data->str;
 	
 	/* Loop over expected arguments from op.h */
@@ -69,7 +71,7 @@ static char		**ft_parse_instruction_init(t_lexer *lexer, t_token *instr)
 	token = ft_lexer_read(lexer);
 	if (0 != token && TK_ENDLINE != token->kind)
 	{
-		ft_error(&lexer->loc, instr, "Endline separator is missing\n");
+		ft_error(&lexer->loc, instr, "Endline separator is missing");
 		return (0);
 	}
 
@@ -80,10 +82,10 @@ static char		**ft_parse_instruction_init(t_lexer *lexer, t_token *instr)
 t_statement		*ft_parse_instruction(t_lexer *lexer, t_token *token)
 {
 	t_instr		*instr;
-	char		**tab;
 	t_statement	*st;
-	int			i;
 	t_list		*it;
+	char		**tab;
+	int			i;
 
 	st = 0;
 	/* Create a 2D char array from instruction name and arguments. */
@@ -94,6 +96,7 @@ t_statement		*ft_parse_instruction(t_lexer *lexer, t_token *token)
 	instr = ft_instruction_encode(g_op_tab[token->param_op].nb_args, tab);
 	if (0 != instr)
 	{
+		/* Instruction encode succeeded. Create the statement node */
 		st = (t_statement *)ft_memalloc(sizeof(t_statement));
 		st->instr = instr;
 

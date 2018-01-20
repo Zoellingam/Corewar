@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   endian.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
+/*   By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/03 13:39:21 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/01/20 22:24:51 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,3 +52,16 @@ int32_t		ft_endian_convert_int32(int32_t val);
 uint32_t	ft_endian_convert_uint32(uint32_t val);
 
 #endif
+
+/*
+#ifndef ENDIAN_H
+# define ENDIAN_H
+
+# include <stdint.h>
+
+int			ft_is_little_endian(void);
+int16_t		ft_endian_convert_int16(int16_t val);
+int32_t		ft_endian_convert_int32(int32_t val);
+
+#endif
+*/

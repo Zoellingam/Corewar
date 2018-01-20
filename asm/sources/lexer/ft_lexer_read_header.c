@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lexer_read_header.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
+/*   By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/11/14 21:15:53 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/01/20 16:08:47 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ int			ft_lexer_read_header(t_lexer *lexer, t_header *header)
 	/* Read the second line, that sould be '.comment "string" \n' */
 	if (0 == ft_lexer_read_comment(lexer, header))
 		return (0);
-	header->magic = ft_endian_convert_uint32(COREWAR_EXEC_MAGIC);
+	/* Setup the magic number */
+	header->magic = ft_endian_convert_int32(COREWAR_EXEC_MAGIC);
+	/* At this time, we parsed the header content, but we still
+	   don't know the champion size. The header will be completed
+	   at the end of the parsing. */
 	return (1);
 }

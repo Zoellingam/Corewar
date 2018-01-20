@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lex_dir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
+/*   By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/11/16 23:39:52 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/01/20 21:49:47 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_lexer.h"
-# include "ft_ctype.h"
-# include "ft_printf.h"
+#include "ft_lexer.h"
+#include "ft_ctype.h"
+#include "ft_printf.h"
 
 static t_token	*ft_lex_dir_value(t_location *loc, char const *p)
 {
@@ -46,7 +46,6 @@ t_token			*ft_lex_dir(t_location *loc)
 	if (DIRECT_CHAR == *p)
 	{
 		++p;
-
 		/* Check for 'value' */
 		token = ft_lex_dir_value(loc, p);
 		if (0 == token && LABEL_CHAR == *p)

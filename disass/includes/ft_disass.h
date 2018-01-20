@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_disass.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
+/*   By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/11/12 23:21:20 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/12/14 09:59:41 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_DISASS_H
 # define FT_DISASS_H
 
-# include "instruction.h"
+# include "ft_instruction.h"
 # include "timer.h"
 
 # include "ft_list.h"
