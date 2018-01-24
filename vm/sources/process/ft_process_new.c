@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 18:58:44 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 23:19:02 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ t_process	*ft_process_new(t_vm *vm, int champ_idx)
 	ch = vm->option.champion[champ_idx];
 	read(ch->fd, vm->arena + p->pc, ch->header.prog_size);
 	close(ch->fd);
-	/* Setup process champion */
+	/* Setup process numbers */
 	p->number = ch->n;
+	p->parent_number = p->number;
 	/* Set champion number in first register */
 	p->reg[1] = -p->number;
 	/* Inc the total count of processes */

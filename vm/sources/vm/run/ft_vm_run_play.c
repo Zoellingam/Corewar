@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 20:47:51 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 22:54:01 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static int	ft_vm_dump(t_vm *this)
 	size_t	j;
 
 	i = 0;
-	while (i < MEM_SIZE / 64)
+	while (i < (MEM_SIZE >> 6))
 	{
 		j = 0;
-		ft_printf("0x%04x : ", i * 64);
+		ft_printf("0x%04x : ", i << 6);
 		while (j < 64)
 		{
 			/* Print '00' if stealth mode is ON */
@@ -34,7 +34,7 @@ static int	ft_vm_dump(t_vm *this)
 				ft_printf("ff ");
 			/* Else, print the correct byte */
 			else
-				ft_printf("%02hhx ", ft_arena_get_int8(this->arena, i * 64 + j));
+				ft_printf("%02hhx ", ft_arena_get_int8(this->arena, (i << 6) + j));
 			++j;
 		}
 		ft_printf("\n");

@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 01:25:05 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 23:17:28 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct			s_process
 {
 	/* Process number */
 	int32_t				number;
+	/* Parent number is need for any update in visualisation mode */
+	int32_t				parent_number;
 	/* pc position in the arena */
 	int32_t				pc;
 	/* Register table */
