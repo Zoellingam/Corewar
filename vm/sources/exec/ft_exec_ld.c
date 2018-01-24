@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/23 00:10:50 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 10:32:53 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void		ft_exec_ld(t_vm *vm, t_process *process, t_instr *instr)
 	int arg1;
 	int arg2;
 
-	/* Make sure the instruction has the correct number of parameter */
-	assert(2 == instr->op->nb_args);
 	/* 1st argument: T_DIR | T_IND */
 	arg1 = instr->args[0].data;
 	if (T_IND == instr->args[0].type)

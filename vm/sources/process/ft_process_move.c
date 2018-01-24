@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 00:21:31 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 13:55:28 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,12 @@ void	ft_process_move(t_vm *vm, t_process *process, t_instr *instr)
 		i = 0;
 		while (i < instr->instr_size)
 		{
-			ft_printf("%02x ", vm->arena[LOOP(process->pc + i)]);
+			/* Print '00' if stealth mode is ON */
+			if (0 != vm->option.stealth)
+				ft_printf("00 ");
+			/* Else, print the correct byte */
+			else
+				ft_printf("%02x ", vm->arena[LOOP(process->pc + i)]);
 			++i;
 		}
 		ft_printf("\n");

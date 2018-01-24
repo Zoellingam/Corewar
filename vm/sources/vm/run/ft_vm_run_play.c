@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 10:01:29 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 13:55:49 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 #include "ft_round.h"
 #include "ft_vm.h"
 #include "libft.h"
+#include <stdio.h>
 
-static int	ft_vm_dump(uint8_t *arena)
+static int	ft_vm_dump(t_vm *this)
 {
 	size_t	i;
 
@@ -23,7 +24,13 @@ static int	ft_vm_dump(uint8_t *arena)
 	ft_printf("0x0000 : ");
 	while (i < MEM_SIZE)
 	{
-		ft_printf("%02hhx ", arena[i++]);
+		/* Print '00' if stealth mode is ON */
+		if (0 != this->option.stealth)
+			ft_printf("00 ");
+			/* Else, print the correct byte */
+		else
+			ft_printf("%02hhx ", this->arena[i]);
+		++i;
 		if (0 == (i & 63))
 			ft_printf("\n");
 		if (0 == (i & 63) && 0 != i % MEM_SIZE)
@@ -35,7 +42,12 @@ static int	ft_vm_dump(uint8_t *arena)
 int			ft_vm_run_play(t_vm *this)
 {
 	if (this->option.dump == this->round.cycle)
-		return (ft_vm_dump(this->arena));
+		return (ft_vm_dump(this));
+	if (this->option.s == this->round.cycle)
+	{
+		ft_vm_dump(this);
+		getchar();
+	}
 	++this->round.cycle;
 	if (this->option.display & OPTION_DISPLAY_SHOW_CYCLES)
 		ft_printf("It is now cycle %d\n", this->round.cycle);

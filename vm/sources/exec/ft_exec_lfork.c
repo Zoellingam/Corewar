@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/22 21:07:17 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 11:43:18 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@ void		ft_exec_lfork(t_vm *vm, t_process *process, t_instr *instr)
 	t_process	*p;
 	int 		arg1;
 
-	/* Make sure the instruction has the correct number of parameter */
-	assert(1 == instr->op->nb_args);
 	/* 1st argument: T_DIR */
 	arg1 = instr->args[0].data;
-	
-	p = ft_process_clone(process, ++vm->nb_process, LOOP(process->pc + arg1));
-	ft_list_add(&p->list, &vm->process_head);
+	/* Do not create any champion if the process limit is reached */
+	if (vm->nb_process != vm->option.process_limit)
+	{
+		p = ft_process_clone(process, ++vm->nb_process, LOOP(process->pc + arg1));
+		ft_list_add(&p->list, &vm->process_head);
+	}
 	if (vm->option.display & OPTION_DISPLAY_SHOW_OPERATIONS)
 		ft_printf("P% 5d | lfork %d (%d)\n", process->number, arg1, process->pc + arg1);
 }

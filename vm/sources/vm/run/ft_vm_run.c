@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 10:00:58 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 11:48:10 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void		ft_vm_run(t_vm *this)
 		if (this->round.cycle_to_die <= limit)
 		{
 			ft_vm_run_check(this);
+			if (0 == --this->option.round_limit)
+				break ;
 			limit = 0;
 		}
 	}

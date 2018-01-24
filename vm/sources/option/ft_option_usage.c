@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 00:29:16 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 13:54:03 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,8 @@ static char const	*g_subject_usage[] =
     "-process-limit N:  Use a pool of maximum N processes",
     "-round-limit N:    Play maximum of N rounds",
     "-start-cycle N:    Start battle when cycle counter reach this limit",
-    "-ctmo N:           Champions play in their area instead of the arena",
-    "                   area for the N first cycles",
-    "                   The instruction (gtmo) is implemented in this mode",
 	"### DUMP ############################################################",
-	" -a:               Prints output from \"aff\" (Default is to hide it)",
+	"-a:                Prints output from \"aff\" (Default is to hide it)",
     "-stealth:          Hides the real content of the memory",
 	"-dump N:           Dumps memory after N cycles then exits",
     "-s N:              Runs N cycles, dumps memory, pauses, then repeats",

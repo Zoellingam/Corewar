@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/22 20:42:53 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 10:31:48 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ Epitech-FR:
 void		ft_exec_aff(t_vm *vm, t_process *process, t_instr *instr)
 {
 	int8_t 	arg1;
-
-	/* Make sure the instruction has the correct number of parameter */
-	assert(1 == instr->op->nb_args);
 
 	/* 1st argument: T_REG */
 	arg1 = process->reg[instr->args[0].data] & 0xff;

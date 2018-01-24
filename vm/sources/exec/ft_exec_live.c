@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 01:22:39 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 14:03:06 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		ft_exec_live(t_vm *vm, t_process *process, t_instr *instr)
 		{
 			if (vm->option.display & OPTION_DISPLAY_SHOW_LIVES)
 				ft_printf("Player %d (%s) is said to be alive\n",
-					-arg1, vm->option.champion[i]->header.prog_name);
+					-arg1, vm->option.ch_opt[i].header.prog_name);
 			vm->round.last_champion_alive = -arg1;
 			break ;
 		}

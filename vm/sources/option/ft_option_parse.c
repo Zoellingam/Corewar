@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 00:30:13 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 13:54:08 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static const t_state_machine	g_option_state_machine[] =
 	[OPT_STATE_A] = &ft_option_parse_a,
 	[OPT_STATE_N] = &ft_option_parse_n,
 	[OPT_STATE_S] = &ft_option_parse_s,
-	[OPT_STATE_CTMO] = &ft_option_parse_ctmo,
 	[OPT_STATE_DUMP] = &ft_option_parse_dump,
 	[OPT_STATE_NUMBER] = &ft_option_parse_number,
 	[OPT_STATE_DISPLAY] = &ft_option_parse_display,

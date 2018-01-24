@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/22 20:50:23 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 11:42:57 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ void		ft_exec_fork(t_vm *vm, t_process *process, t_instr *instr)
 	t_process	*p;
 	int 		arg1;
 
-	/* Make sure the instruction has the correct number of parameter */
-	assert(1 == instr->op->nb_args);
 	/* 1st argument: T_DIR */
 	arg1 = instr->args[0].data;
-	/* Clone process */
-	p = ft_process_clone(process, ++vm->nb_process, LOOP(process->pc + arg1 % IDX_MOD));
-	ft_list_add(&p->list, &vm->process_head);
-	
+	/* Clone process if the process limit is not reached */
+	if (vm->nb_process != vm->option.process_limit)
+	{
+		p = ft_process_clone(process, ++vm->nb_process, LOOP(process->pc + arg1 % IDX_MOD));
+		ft_list_add(&p->list, &vm->process_head);
+	}
 	if (vm->option.display & OPTION_DISPLAY_SHOW_OPERATIONS)
 		ft_printf("P% 5d | fork %d (%d)\n", process->number, arg1, process->pc + arg1 % IDX_MOD);
 }

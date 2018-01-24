@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/22 22:46:28 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 10:31:53 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void		ft_exec_and(t_vm *vm, t_process *process, t_instr *instr)
 	int 	arg2;
 	int		arg3;
 
-	/* Make sure the instruction has the correct number of parameter */
-	assert(3 == instr->op->nb_args);
 	/* 1st argument: T_REG | T_DIR | T_IND */
 	arg1 = instr->args[0].data;
 	if (T_REG == instr->args[0].type)

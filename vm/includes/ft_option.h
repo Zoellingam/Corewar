@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_option.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+        */
+/*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/22 02:45:34 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/01/24 13:54:23 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ typedef struct		s_option
 {
 	/* Print memory and pause after N cycles */
 	int				s;
-	/* Champion use their memory for N cycles instead of global Arena memory */
-	int				ctmo;
 	/* Print memory and quit after N cycles */
 	int				dump;
 	/* Display binary mode */

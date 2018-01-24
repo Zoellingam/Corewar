@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/22 20:45:56 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 10:31:44 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,18 @@ void		ft_exec_add(t_vm *vm, t_process *process, t_instr *instr)
 	int 	arg2;
 	int		arg3;
 
-	/* Make sure the instruction has the correct number of parameter */
-	assert(3 == instr->op->nb_args);
-
 	/* 1st argument: T_REG */
 	arg1 = instr->args[0].data;
 	/* 2nd argument: T_REG */
 	arg2 = instr->args[1].data;
 	/* 3rd argument: T_REG */
 	arg3 = instr->args[2].data;
-
 	/* Add first 2 registers and store result into third register */
 	process->reg[arg3] = process->reg[arg1] + process->reg[arg2];
-
 	/* Setup the carry flag as "true" if the result is 0. */
 	process->carry = (0 == process->reg[arg3]);
-
 	if (vm->option.display & OPTION_DISPLAY_SHOW_OPERATIONS)
 		ft_printf("P% 5d | add r%hhd r%hhd r%hhd\n", process->number, arg1, arg2, arg3);
+	return ;
 	(void)vm;
 }

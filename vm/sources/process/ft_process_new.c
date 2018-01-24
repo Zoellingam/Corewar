@@ -6,10 +6,11 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 01:24:51 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 14:04:02 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_instruction.h"
 #include "ft_process.h"
 #include "ft_string.h"
 #include "ft_vm.h"
@@ -24,7 +25,7 @@ t_process	*ft_process_new(t_vm *vm, int champ_idx)
 
 	p = ft_memalloc(sizeof(*p));
 	/* get offset pc */
-	p->pc = MEM_SIZE / vm->option.ch_count * champ_idx;
+	p->pc = LOOP(MEM_SIZE / vm->option.ch_count * champ_idx);
 	/* read the file */
 	ch = vm->option.champion[champ_idx];
 	read(ch->fd, vm->arena + p->pc, ch->header.prog_size);
