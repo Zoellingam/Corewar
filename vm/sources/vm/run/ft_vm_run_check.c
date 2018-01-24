@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 01:21:21 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 10:01:01 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 void ft_vm_run_check(t_vm *this)
 {
-
 	++this->round.nb_check;
 	/* Delete dead champions if any */
 	ft_list_apply_data(&this->process_head, (void *)this, &ft_vm_eliminate);
@@ -32,5 +31,4 @@ void ft_vm_run_check(t_vm *this)
 	}
 	/* Restart live count */
 	this->round.nbr_live = 0;
-	this->round.cycle_to_die_check = 0;
 }

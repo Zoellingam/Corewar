@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 01:21:26 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 10:01:29 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static int	ft_vm_dump(uint8_t *arena)
 
 int			ft_vm_run_play(t_vm *this)
 {
-	++this->round.cycle_to_die_check;
 	if (this->option.dump == this->round.cycle)
 		return (ft_vm_dump(this->arena));
 	++this->round.cycle;
