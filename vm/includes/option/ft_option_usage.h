@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_option_usage.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 00:31:07 by igomez           ###   ########.fr       */
+/*   Updated: 2017/11/26 04:57:06 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vm.h"
+#ifndef FT_OPTION_USAGE_H
+# define FT_OPTION_USAGE_H
 
-int		main(int argc, char **argv)
-{
-	t_vm	vm;
+# include <stdarg.h>
 
-	/* Setup the virtual machine from command line arguments */
-	ft_vm_init(&vm, argc, argv);
-	/* Run the virtual machine. Let's fight. */
-	ft_vm_run(&vm);
-	/* Free memory */
-	ft_vm_clear(&vm);
-	return (0);
-}
+void	ft_option_usage(char const *error, ...);
+
+#endif

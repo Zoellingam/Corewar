@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+         #
+#    By: igomez <igomez@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2018/01/20 22:25:43 by Zoellingam       ###   ########.fr        #
+#    Updated: 2018/01/23 23:38:44 by igomez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ clean:
 
 fclean: clean
 	@make -C "$(DLIB)" fclean;
-	@rm -f "$(NAME)";
+	@rm -f $(NAME);
 
 re: fclean all
 

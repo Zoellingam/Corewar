@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_vm_introduce.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 00:31:07 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/23 23:49:39 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_process.h"
+#include "ft_round.h"
 #include "ft_vm.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+void		ft_vm_introduce(t_vm *this)
 {
-	t_vm	vm;
+	t_list		*it;
+	t_process	*process;
 
-	/* Setup the virtual machine from command line arguments */
-	ft_vm_init(&vm, argc, argv);
-	/* Run the virtual machine. Let's fight. */
-	ft_vm_run(&vm);
-	/* Free memory */
-	ft_vm_clear(&vm);
-	return (0);
+	it = this->process_head.prev;
+	ft_printf("Introducing contestants...\n");
+	while (it != &this->process_head)
+	{
+		process = C_PROCESS(it);
+		ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n",
+			process->number,
+			this->option.champion[process->number - 1]->header.prog_size,
+			this->option.champion[process->number - 1]->header.prog_name,
+			this->option.champion[process->number - 1]->header.comment);
+		it = it->prev;
+	}
 }
