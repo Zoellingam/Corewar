@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 00:26:33 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 20:57:06 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		ft_instruction_decode(t_instr *this, uint8_t opcode, uint32_t pc, uint8_t *
 	/* get bytecode and setup pc to the first arg */
 	if (0 != this->op->param_byte)
 	{
-		bytecode = arena[LOOP(pc + 1)];
+		bytecode = ft_arena_get_int8(arena, pc + 1);
 		this->new_pc = pc + 2;
 	}
 	/* Else, create new one with default DIR_CODE */

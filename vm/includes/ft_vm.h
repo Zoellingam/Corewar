@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 10:35:29 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 20:43:49 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct		s_vm
 {
 	t_round			round;
 	t_option		option;
-	uint8_t			arena[MEM_SIZE + 8];
+	uint8_t			arena[MEM_SIZE];
 	int				nb_process;
 	t_list			process_head;
 }					t_vm;

@@ -6,10 +6,11 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 20:33:38 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 20:47:51 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_instruction.h"
 #include "ft_process.h"
 #include "ft_round.h"
 #include "ft_vm.h"
@@ -33,7 +34,7 @@ static int	ft_vm_dump(t_vm *this)
 				ft_printf("ff ");
 			/* Else, print the correct byte */
 			else
-				ft_printf("%02hhx ", this->arena[i * 64 + j]);
+				ft_printf("%02hhx ", ft_arena_get_int8(this->arena, i * 64 + j));
 			++j;
 		}
 		ft_printf("\n");
