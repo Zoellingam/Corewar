@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 00:27:58 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 19:46:31 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void		ft_option_parse_champion(t_option *this, t_option_parser *parser)
 		ft_option_usage("Error: Incorrect champion number: %d\n", champ->n);
 	/* Open file and read headers */
 	champ->fd = open(p, O_RDONLY);
+	champ->file_name = p;
 	if (0 > champ->fd)
 		ft_option_usage("Can't open file: %s\n", p);
 	ft_option_parse_champion_header(champ);
