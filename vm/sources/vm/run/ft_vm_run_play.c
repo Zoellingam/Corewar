@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 19:29:27 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/24 20:33:38 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,25 @@
 static int	ft_vm_dump(t_vm *this)
 {
 	size_t	i;
+	size_t	j;
 
 	i = 0;
-	ft_printf("0x0000 : ");
-	while (i < MEM_SIZE)
+	while (i < MEM_SIZE / 64)
 	{
-		/* Print '00' if stealth mode is ON */
-		if (0 != this->option.stealth)
-			ft_printf("ff ");
+		j = 0;
+		ft_printf("0x%04x : ", i * 64);
+		while (j < 64)
+		{
+			/* Print '00' if stealth mode is ON */
+			if (0 != this->option.stealth)
+				ft_printf("ff ");
 			/* Else, print the correct byte */
-		else
-			ft_printf("%02hhx ", this->arena[i]);
+			else
+				ft_printf("%02hhx ", this->arena[i * 64 + j]);
+			++j;
+		}
+		ft_printf("\n");
 		++i;
-		if (0 == (i & 63))
-			ft_printf("\n");
-		if (0 == (i & 63) && 0 != i % MEM_SIZE)
-			ft_printf("0x%04x : ", i);
 	}
 	return (0);
 }
