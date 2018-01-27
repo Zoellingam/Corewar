@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/25 00:24:43 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/25 23:36:02 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@ void		ft_vm_introduce(t_vm *this)
 {
 	t_list		*it;
 	t_process	*process;
-
-	/* Do not print on ncurse mode */
-	if (this->option.display & OPTION_DISPLAY_SHOW_NCURSES)
-		return ;
 
 	it = this->process_head.prev;
 	ft_printf("Introducing contestants...\n");

@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/22 23:07:23 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/27 19:16:50 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void		ft_exec_st(t_vm *vm, t_process *process, t_instr *instr)
 	int arg1;
 	int arg2;
 
-	/* Make sure the instruction has the correct number of parameter */
-	assert(2 == instr->op->nb_args);
 	/* 1st argument: T_REG */
 	arg1 = process->reg[instr->args[0].data];
 	/* 2nd argument: T_IND | T_REG */
@@ -50,7 +48,7 @@ void		ft_exec_st(t_vm *vm, t_process *process, t_instr *instr)
 		process->reg[arg2] = arg1;
 	/* We found a position, store in the arena */
 	else
-		ft_arena_set_int32(vm->arena, process->pc + arg2 % IDX_MOD, arg1);
+		ft_arena_set_int32(&vm->visual, process->pc + arg2 % IDX_MOD, arg1, process->parent_number);
 	/* Display */
 	if (vm->option.display & OPTION_DISPLAY_SHOW_OPERATIONS)
 		ft_printf("P% 5d | st r%hhd %d\n", process->number, instr->args[0].data, arg2);

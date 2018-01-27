@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/23 12:44:18 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/27 18:16:11 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,10 @@ void		ft_exec_lld(t_vm *vm, t_process *process, t_instr *instr)
 	int arg1;
 	int arg2;
 
-	/* Make sure the instruction has the correct number of parameter */
-	assert(2 == instr->op->nb_args);
 	/* 1st argument: T_DIR | T_IND */
 	arg1 = instr->args[0].data;
 	if (T_IND == instr->args[0].type)
-		arg1 = ft_arena_get_int32(vm->arena, process->pc + arg1);
+		arg1 = ft_arena_get_int32(vm->visual.arena, process->pc + arg1);
 	/* 2nd argument: T_REG */
 	arg2 = instr->args[1].data;
 

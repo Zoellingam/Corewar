@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 11:43:18 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/27 19:33:06 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void		ft_exec_lfork(t_vm *vm, t_process *process, t_instr *instr)
 	if (vm->nb_process != vm->option.process_limit)
 	{
 		p = ft_process_clone(process, ++vm->nb_process, LOOP(process->pc + arg1));
+		vm->visual.pc_position[p->pc] = p->parent_number;
 		ft_list_add(&p->list, &vm->process_head);
 	}
 	if (vm->option.display & OPTION_DISPLAY_SHOW_OPERATIONS)

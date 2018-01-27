@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 14:03:06 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/27 18:16:06 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,8 @@ void		ft_exec_live(t_vm *vm, t_process *process, t_instr *instr)
 	size_t	i;
 	int		arg1;
 
-	/* Make sure the instruction has the correct number of parameter */
-	assert(1 == instr->op->nb_args);
 	/* 1st argument: T_DIR */
 	arg1 = instr->args[0].data;
-
 	if (vm->option.display & OPTION_DISPLAY_SHOW_OPERATIONS)
 		ft_printf("P% 5d | live %d\n", process->number, arg1);
 	i = 0;

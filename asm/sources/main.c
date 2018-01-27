@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+        */
+/*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/20 16:01:29 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/01/27 15:49:38 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,22 @@ static char	*ft_loadfile(char const *file)
 int 		main(int argc, char **argv)
 {
 	char	*file_content;
+	int		dump;
 
 	/* Check arguments */
 	if (2 > argc)
 	{
-		ft_printf("Usage: \"%s <champion.s> [<champion>]\"\n", argv[0]);
+		ft_printf("Usage: \"%s [-a] <champion.s> [...]\"\n", argv[0]);
+		ft_printf("        -a: Dump an annotated version\n");
 		return (0);
+	}
+
+
+	dump = 0;
+	if (0 == ft_strcmp("-a", argv[1]))
+	{
+		++argv;
+		dump = 1;
 	}
 	/* For each arguments, run the loop. It allow us to compile
 	   any champions passed as parameter */
@@ -70,7 +80,7 @@ int 		main(int argc, char **argv)
 		if (0 != file_content)
 		{
 			/* Compile the file */
-			ft_asm(*argv, file_content);
+			ft_asm(*argv, file_content, dump);
 			/* Cleanup the memory */
 			ft_strdel(&file_content);
 		}

@@ -6,12 +6,13 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 20:51:41 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/27 19:33:48 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_instruction.h"
 #include "ft_process.h"
+#include "ft_visual.h"
 #include "ft_printf.h"
 #include "ft_vm.h"
 
@@ -36,12 +37,13 @@ void	ft_process_move(t_vm *vm, t_process *process, t_instr *instr)
 				ft_printf("ff ");
 			/* Else, print the correct byte */
 			else
-				ft_printf("%02hhx ", ft_arena_get_int8(vm->arena, process->pc + i));
+				ft_printf("%02hhx ", ft_arena_get_int8(vm->visual.arena, process->pc + i));
 			++i;
 		}
 		ft_printf("\n");
 	}
-	
 	/* Jump to the next instruction */
+	vm->visual.pc_position[process->pc] = 0;
 	process->pc = LOOP(process->pc + instr->instr_size);
+	vm->visual.pc_position[process->pc] = process->parent_number;
 }

@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 20:43:49 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/27 18:09:56 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_VM_H
 
 # include <stddef.h>
+# include "ft_visual.h"
 # include "ft_option.h"
 # include "ft_round.h"
 # include "ft_list.h"
@@ -22,7 +23,7 @@ typedef struct		s_vm
 {
 	t_round			round;
 	t_option		option;
-	uint8_t			arena[MEM_SIZE];
+	t_visual		visual;
 	int				nb_process;
 	t_list			process_head;
 }					t_vm;

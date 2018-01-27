@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/22 22:10:57 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/27 19:16:31 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void		ft_exec_sti(t_vm *vm, t_process *process, t_instr *instr)
 	int arg3;
 	int total;
 
-	/* Make sure the instruction has the correct number of parameter */
-	assert(3 == instr->op->nb_args);
 	/* 1st argument: T_REG */
 	arg1 = process->reg[instr->args[0].data];
 	/* 2nd argument: T_REG | T_DIR | T_IND */
@@ -48,7 +46,7 @@ void		ft_exec_sti(t_vm *vm, t_process *process, t_instr *instr)
 	if (T_REG == instr->args[1].type)
 		arg2 = process->reg[arg2];
 	else if (T_IND == instr->args[1].type)
-		arg2 = ft_arena_get_int32(vm->arena, process->pc + arg2 % IDX_MOD);
+		arg2 = ft_arena_get_int32(vm->visual.arena, process->pc + arg2 % IDX_MOD);
 	/* 3rd argument: T_DIR | T_REG */
 	arg3 = instr->args[2].data;
 	if (T_REG == instr->args[2].type)
@@ -56,7 +54,7 @@ void		ft_exec_sti(t_vm *vm, t_process *process, t_instr *instr)
 	/* get the sum of arg 2 and 3  */
 	total = arg2 + arg3;
 	/* Set data in the arena */
-	ft_arena_set_int32(vm->arena, process->pc + total % IDX_MOD, arg1);
+	ft_arena_set_int32(&vm->visual, process->pc + total % IDX_MOD, arg1, process->parent_number);
 	/* Final print */
 	if (vm->option.display & OPTION_DISPLAY_SHOW_OPERATIONS)
 	{

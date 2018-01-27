@@ -6,14 +6,16 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 11:48:10 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/27 22:03:46 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_process.h"
+#include "ft_visual.h"
 #include "ft_round.h"
 #include "ft_vm.h"
 #include "libft.h"
+#include <unistd.h>
 
 void		ft_vm_run(t_vm *this)
 {
@@ -25,6 +27,9 @@ void		ft_vm_run(t_vm *this)
 	ft_vm_run_setup(this);
 	/* Introduce contestants */
 	ft_vm_introduce(this);
+	/* Setup ncurse window */
+	if (this->option.display & OPTION_DISPLAY_SHOW_NCURSES)
+		ft_visual_start(&this->visual);
 	/* Virtual machine run as long as there is processus alive */
 	while (!ft_list_is_empty(&this->process_head))
 	{
@@ -40,7 +45,13 @@ void		ft_vm_run(t_vm *this)
 				break ;
 			limit = 0;
 		}
+		/* Refresh window */
+		if (this->option.display & OPTION_DISPLAY_SHOW_NCURSES)
+			ft_visual_refresh(&this->visual, this->option.stealth);
 	}
+	/* Close ncurse window */
+	if (this->option.display & OPTION_DISPLAY_SHOW_NCURSES)
+		ft_visual_end(&this->visual);
 	/* Announce Winner */
 	ft_vm_announce(this);
 }

@@ -6,12 +6,11 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/25 00:21:09 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/26 01:30:27 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_process.h"
-#include "ft_visual.h"
 #include "ft_vm.h"
 #include "libft.h"
 #include "op.h"
@@ -46,6 +45,4 @@ void	ft_vm_init(t_vm *this, int argc, char **argv)
 	/* Create processus from options */
 	ft_vm_init_create_processes(this);
 	/* setup ncurse if needed */
-	if (this->option.display & OPTION_DISPLAY_SHOW_NCURSES)
-		ft_visual_start();
 }

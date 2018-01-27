@@ -42,7 +42,7 @@ void		ft_exec_ld(t_vm *vm, t_process *process, t_instr *instr)
 	/* 1st argument: T_DIR | T_IND */
 	arg1 = instr->args[0].data;
 	if (T_IND == instr->args[0].type)
-		arg1 = ft_arena_get_int32(vm->arena, process->pc + arg1 % IDX_MOD);
+		arg1 = ft_arena_get_int32(vm->visual.arena, process->pc + arg1 % IDX_MOD);
 	/* 2nd argument: T_REG */
 	arg2 = instr->args[1].data;
 
@@ -50,7 +50,7 @@ void		ft_exec_ld(t_vm *vm, t_process *process, t_instr *instr)
 	ft_printf("LD: arg1: %d (%02b) (%08x), arg2: %d (%02b)\n",
 		arg1,
 		instr->args[0].type,
-		*(unsigned int *)(vm->arena + process->pc),
+		*(unsigned int *)(vm->visual.arena + process->pc),
 		instr->args[1].data,
 		instr->args[1].type);
 */

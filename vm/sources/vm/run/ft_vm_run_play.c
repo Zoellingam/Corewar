@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/24 22:54:01 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/27 18:10:21 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	ft_vm_dump(t_vm *this)
 				ft_printf("ff ");
 			/* Else, print the correct byte */
 			else
-				ft_printf("%02hhx ", ft_arena_get_int8(this->arena, (i << 6) + j));
+				ft_printf("%02hhx ", ft_arena_get_int8(this->visual.arena, (i << 6) + j));
 			++j;
 		}
 		ft_printf("\n");

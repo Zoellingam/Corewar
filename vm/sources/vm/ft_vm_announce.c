@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/25 00:23:03 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/25 23:36:06 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 void	ft_vm_announce(t_vm *this)
 {
-	/* Do not print on ncurse mode */
-	if (this->option.display & OPTION_DISPLAY_SHOW_NCURSES)
-		return ;
 	ft_printf("Contestant %d, \"%s\", has won !\n",
 		this->round.last_champion_alive,
 		this->option.champion[this->round.last_champion_alive - 1]->header.prog_name);

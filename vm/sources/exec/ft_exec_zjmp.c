@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/23 23:44:16 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/27 18:20:59 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,12 @@ Epitech-FR:
 	Cette instruction n’est pas suivie d’octet pour décrire les paramètres.
 	Elle prend toujours un index (IND_SIZE) et fait un saut a cet index si
 	le carry est a un. Si le carry est nul, zjmp ne fait rien mais consomme
-	le même temps. zjmp %23 met si carry == 1 met (PC + (23 % IDX_MOD)) dans le PC.
+	le même temps. zjmp %23 met si carry egale 1 met (PC + (23 % IDX_MOD)) dans le PC.
 */
 void		ft_exec_zjmp(t_vm *vm, t_process *process, t_instr *instr)
 {
 	int		arg1;
 
-	/* Make sure the instruction has the correct number of parameter */
-	assert(1 == instr->op->nb_args);
 	/* 1st argument: T_DIR */
 	arg1 = instr->args[0].data;
 	/* Exec jump if carry is valid */

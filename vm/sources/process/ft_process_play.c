@@ -6,12 +6,13 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/25 00:17:22 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/27 18:06:55 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_instruction.h"
 #include "ft_process.h"
+#include "ft_visual.h"
 #include "libft.h"
 #include "ft_exec.h"
 #include "ft_vm.h"
@@ -49,7 +50,7 @@ void	ft_process_play(t_list *it, void *context)
 	process = C_PROCESS(it);
 	if (!OPCODE_IS_VALID(process->opcode))
 	{
-		process->opcode = ft_arena_get_int8(vm->arena, process->pc);
+		process->opcode = ft_arena_get_int8(vm->visual.arena, process->pc);
 		if (!OPCODE_IS_VALID(process->opcode))
 		{
 			process->pc = LOOP(process->pc + 1);
@@ -59,7 +60,7 @@ void	ft_process_play(t_list *it, void *context)
 	}
 	if (0 == --process->sleep)
 	{
-		if (!ft_instruction_decode(&instr, process->opcode, process->pc, vm->arena))
+		if (!ft_instruction_decode(&instr, process->opcode, process->pc, vm->visual.arena))
 			g_exec_instruction[instr.op->numero](vm, process, &instr);
 		/* Update pc and sleep */
 		ft_process_move(vm, process, &instr);
