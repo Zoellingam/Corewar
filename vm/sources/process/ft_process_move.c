@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/28 02:33:01 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/28 23:03:54 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_process_move(t_vm *vm, t_process *process, t_instr *instr)
 
 	if (vm->option.display & OPTION_DISPLAY_SHOW_NCURSES
 		&& process->number == process->parent_number)
-		ft_visual_refresh_player(&vm->visual, process);
+		ft_visual_refresh_player(&vm->visual.player, process);
 	
 
 	/* Tricks to handle zjmp instruction */
@@ -41,13 +41,13 @@ void	ft_process_move(t_vm *vm, t_process *process, t_instr *instr)
 				ft_printf("ff ");
 			/* Else, print the correct byte */
 			else
-				ft_printf("%02hhx ", ft_arena_get_int8(vm->visual.arena, process->pc + i));
+				ft_printf("%02hhx ", ft_arena_get_int8(vm->visual.board.arena, process->pc + i));
 			++i;
 		}
 		ft_printf("\n");
 	}
 	/* Jump to the next instruction */
-	vm->visual.pc_position[process->pc] = 0;
+	vm->visual.board.pc_position[process->pc] = 0;
 	process->pc = LOOP(process->pc + instr->instr_size);
-	vm->visual.pc_position[process->pc] = process->parent_number;
+	vm->visual.board.pc_position[process->pc] = process->parent_number;
 }

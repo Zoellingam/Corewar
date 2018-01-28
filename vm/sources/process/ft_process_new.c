@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/28 15:57:48 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/28 22:49:37 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ t_process	*ft_process_new(t_vm *vm, int champ_idx)
 	p->number = ch->n;
 	p->parent_number = p->number;
 	/* read the file */
-	read(ch->fd, vm->visual.arena + p->pc, ch->header.prog_size);
+	read(ch->fd, vm->visual.board.arena + p->pc, ch->header.prog_size);
 	close(ch->fd);
 	/* fill color */
-	ft_memset(vm->visual.color + p->pc, p->number, ch->header.prog_size);
-	vm->visual.pc_position[p->pc] = p->parent_number;
+	ft_memset(vm->visual.board.color + p->pc, p->number, ch->header.prog_size);
+	vm->visual.board.pc_position[p->pc] = p->parent_number;
 	/* Set champion number in first register */
 	p->reg[1] = -p->number;
 	/* Inc the total count of processes */

@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/27 19:16:31 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/28 22:44:51 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void		ft_exec_sti(t_vm *vm, t_process *process, t_instr *instr)
 	if (T_REG == instr->args[1].type)
 		arg2 = process->reg[arg2];
 	else if (T_IND == instr->args[1].type)
-		arg2 = ft_arena_get_int32(vm->visual.arena, process->pc + arg2 % IDX_MOD);
+		arg2 = ft_arena_get_int32(vm->visual.board.arena, process->pc + arg2 % IDX_MOD);
 	/* 3rd argument: T_DIR | T_REG */
 	arg3 = instr->args[2].data;
 	if (T_REG == instr->args[2].type)

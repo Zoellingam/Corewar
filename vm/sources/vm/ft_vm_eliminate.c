@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/28 18:58:50 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/28 23:01:08 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void 	ft_vm_eliminate(t_list *it, void *context)
 		if (OPTION_DISPLAY_SHOW_DEATHS & ((t_vm *)context)->option.display)
 			ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
 				process->number, offset, vm->round.cycle_to_die);
-		vm->visual.pc_position[process->pc] = 0;
+		vm->visual.board.pc_position[process->pc] = 0;
 		if (process->number == process->parent_number &&
 			vm->option.display & OPTION_DISPLAY_SHOW_NCURSES)
-			ft_visual_refresh_player_kill(&vm->visual, process);
+			ft_visual_refresh_player_kill(&vm->visual.player, process);
 		ft_process_del(it);
 	}
 	process->live_per_round = 0;
