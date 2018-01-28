@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/28 17:16:21 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/28 18:54:20 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@ static char const	*g_header[] =
 	"---------------------------------------------------------------------------------"
 };
 
+static char const	*g_player_state[] =
+{
+	",d88b.d88b,",
+  	"88888888888",
+ 	"`Y8888888Y'",
+    "  `Y888Y'  ",
+    "    `Y'    ",
+    "   alive   "
+};
+
 static int	ft_visual_window_checker(void)
 {
 	static int const	x = 70;
@@ -53,6 +63,7 @@ static int	ft_visual_window_checker(void)
 static void	ft_visual_start_init_windows(t_vm *vm)
 {
 	size_t		i;
+	size_t		j;
 	t_list		*it;
 	t_process	*p;
 
@@ -79,11 +90,21 @@ static void	ft_visual_start_init_windows(t_vm *vm)
     	vm->visual.win_player[p->parent_number - 1] = newwin(10, 85, 12 + 11 * p->parent_number, 200);
 	    box(vm->visual.win_player[p->parent_number - 1], '|', '-');
     	wattron(vm->visual.win_player[p->parent_number - 1], COLOR_PAIR(0) | A_BOLD);
-    	mvwprintw(vm->visual.win_player[p->parent_number - 1], 2, 2, "Player %d", p->parent_number);
+    	mvwprintw(vm->visual.win_player[p->parent_number - 1], 2, 7, "Player %d", p->parent_number);
     	wattroff(vm->visual.win_player[p->parent_number - 1], COLOR_PAIR(0) | A_BOLD);
     	wattron(vm->visual.win_player[p->parent_number - 1], COLOR_PAIR(p->parent_number) | A_BOLD);
-    	mvwprintw(vm->visual.win_player[p->parent_number - 1], 2, 12, "%s", vm->option.champion[p->parent_number - 1]->header.prog_name);
+    	mvwprintw(vm->visual.win_player[p->parent_number - 1], 2, 17, "%s", vm->option.champion[p->parent_number - 1]->header.prog_name);
     	wattroff(vm->visual.win_player[p->parent_number - 1], COLOR_PAIR(p->parent_number) | A_BOLD);
+    	
+    	wattron(vm->visual.win_player[p->parent_number - 1], COLOR_PAIR(1) | A_BOLD);
+    	j = 0;
+    	while (j < sizeof(g_player_state) / sizeof(g_player_state[0]))
+    	{
+    		mvwprintw(vm->visual.win_player[p->parent_number - 1], 2 + j, 60, "%s", g_player_state[j]);
+    		++j;
+    	}
+    	wattroff(vm->visual.win_player[p->parent_number - 1], COLOR_PAIR(1) | A_BOLD);
+
     	wrefresh(vm->visual.win_player[p->parent_number - 1]);
     	it = it->next;
     }
@@ -112,5 +133,5 @@ void		ft_visual_start(t_vm *vm)
     init_pair(3 + MAX_PLAYERS, COLOR_BLACK, COLOR_RED);
     init_pair(4 + MAX_PLAYERS, COLOR_BLACK, COLOR_CYAN);
     ft_visual_start_init_windows(vm);
-    vm->visual.refresh = 20000;
+    vm->visual.refresh = 100;
 }

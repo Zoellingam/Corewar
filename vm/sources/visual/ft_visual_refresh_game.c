@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/28 16:10:13 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/28 18:56:38 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		ft_visual_refresh_game(t_visual const *this, t_vm const *vm)
     mvwprintw(this->win_info, 16, 25, "Current winner:");
     wattroff(this->win_info, COLOR_PAIR(0) | A_BOLD);
     wattron(this->win_info, COLOR_PAIR(vm->round.last_champion_alive) | A_BOLD);
-    mvwprintw(this->win_info, 16, 41, "%s                                     ",
+    mvwprintw(this->win_info, 16, 41, "%s                  ",
         vm->option.champion[vm->round.last_champion_alive - 1]->header.prog_name);
     wattroff(this->win_info, COLOR_PAIR(vm->round.last_champion_alive) | A_BOLD);
     wrefresh(this->win_info);

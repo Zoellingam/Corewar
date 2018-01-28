@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/28 17:17:12 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/28 18:14:26 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void					ft_visual_refresh(t_visual const *this, struct s_vm const *vm);
 void					ft_visual_refresh_game(t_visual const *this, struct s_vm const *vm);
 
 void					ft_visual_refresh_player(t_visual const *this, struct s_process const *process);
+void					ft_visual_refresh_player_kill(t_visual const *this, struct s_process const *process);
 
 void					ft_visual_refresh_footer(t_visual *this, char const *name, int color);
 

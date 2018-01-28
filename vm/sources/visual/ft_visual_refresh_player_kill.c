@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_visual_refresh_player.c                         :+:      :+:    :+:   */
+/*   ft_visual_refresh_player_kill.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/28 18:56:42 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/28 18:56:55 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,30 @@
 #include "ft_vm.h"
 #include <unistd.h>
 
-void	ft_visual_refresh_player(t_visual const *this, t_process const *process)
+static char const	*g_player_state[] =
+{
+	"   __       ",
+	"  /_/\\/\\    ",
+	"  \\_\\  /    ",
+	"  /_/  \\    ",
+	"  \\_\\/\\ \\   ",
+	"     \\_\\/   ",
+    "    dead    "
+};
+
+void	ft_visual_refresh_player_kill(t_visual const *this, t_process const *process)
 {
 	WINDOW	*win;
+	size_t	i;
 
-	win = this->win_player[process->parent_number - 1];
-	wattron(win, COLOR_PAIR(0) | A_BOLD);
-	mvwprintw(win, 5, 15, "Live per round: %d", process->live_per_round);
-	mvwprintw(win, 7, 15, "Last cycle: %d", process->last_live_cycle);
-	wattroff(win, COLOR_PAIR(0) | A_BOLD);
+	i = 0;
+	win = this->win_player[process->number - 1];
+    wattron(win, COLOR_PAIR(3) | A_BOLD);
+    while (i < sizeof(g_player_state) / sizeof(g_player_state[0]))
+    {
+    	mvwprintw(win, 1 + i, 60, "%s", g_player_state[i]);
+    	++i;
+    }
+    wattroff(win, COLOR_PAIR(3) | A_BOLD);
     wrefresh(win);
 }
