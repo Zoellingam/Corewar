@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/27 19:33:48 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/28 02:33:01 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,14 @@ void	ft_process_move(t_vm *vm, t_process *process, t_instr *instr)
 {
 	int32_t	i;
 
+	if (vm->option.display & OPTION_DISPLAY_SHOW_NCURSES
+		&& process->number == process->parent_number)
+		ft_visual_refresh_player(&vm->visual, process);
+	
+
 	/* Tricks to handle zjmp instruction */
 	if (ZJMP_SUCCEED == instr->new_pc)
 		return ;
-
 	/* Display zaz output */
 	if (vm->option.display & OPTION_DISPLAY_SHOW_PC_MOVEMENTS)
 	{

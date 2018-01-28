@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pf_handle_s.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+        */
+/*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/20 22:11:07 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/01/28 15:31:25 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "private/ft_pf_impl.h"
+#include "ft_string.h"
 
 static int32_t	ft_pf_set_w(char *buf, int32_t limit, wchar_t const *wc, int32_t precision)
 {
@@ -59,7 +60,7 @@ void			ft_pf_handle_s(t_pf_buf *p, t_printf *pf)
 		s = "(null)";
 	else if (PF_l == pf->length || (~pf->specifier & 32))
 		return (ft_pf_handle_w(p, pf));
-	len = strnlen(s, pf->precision);
+	len = ft_strnlen(s, pf->precision);
 	ft_pf_pre_padd(p, len, pf);
 	ft_pf_buffer_push(p, s, len);
 	ft_pf_post_padd(p, len, pf);

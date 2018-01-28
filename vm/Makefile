@@ -6,7 +6,7 @@
 #    By: igomez <igomez@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2018/01/23 23:38:44 by igomez           ###   ########.fr        #
+#    Updated: 2018/01/27 23:44:15 by igomez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,9 @@ C_DIRS			+= $(COMN)
 
 # Add to C_FLAGS
 ifeq ($(DEBUG),1)
-C_FLAGS		 	:= -MMD -g -DDEBUG -Wall -Wextra -Werror
+C_FLAGS		 	:= -MMD -g -DDEBUG -Wall -Wextra -Werror -D_XOPEN_SOURCE_EXTENDED
 else
-C_FLAGS		 	:= -MMD -g -Wall -Wextra -Werror
+C_FLAGS		 	:= -MMD -g -Wall -Wextra -Werror -D_XOPEN_SOURCE_EXTENDED
 endif
 
 # Build .o files

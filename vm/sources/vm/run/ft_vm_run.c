@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/27 22:03:46 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/28 02:50:53 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		ft_vm_run(t_vm *this)
 	ft_vm_introduce(this);
 	/* Setup ncurse window */
 	if (this->option.display & OPTION_DISPLAY_SHOW_NCURSES)
-		ft_visual_start(&this->visual);
+		ft_visual_start(this);
 	/* Virtual machine run as long as there is processus alive */
 	while (!ft_list_is_empty(&this->process_head))
 	{
@@ -47,7 +47,10 @@ void		ft_vm_run(t_vm *this)
 		}
 		/* Refresh window */
 		if (this->option.display & OPTION_DISPLAY_SHOW_NCURSES)
+		{
+			ft_visual_refresh_game(&this->visual, this);
 			ft_visual_refresh(&this->visual, this->option.stealth);
+		}
 	}
 	/* Close ncurse window */
 	if (this->option.display & OPTION_DISPLAY_SHOW_NCURSES)

@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/27 19:28:11 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/28 15:15:24 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,7 @@ t_process	*ft_process_new(t_vm *vm, int champ_idx)
 	p->reg[1] = -p->number;
 	/* Inc the total count of processes */
 	++vm->nb_process;
+	ft_log_open("test");
+	ft_log("process: [%d]\n", vm->nb_process);
 	return (p);
 }

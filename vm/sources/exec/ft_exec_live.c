@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/27 18:16:06 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/28 02:46:28 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ void		ft_exec_live(t_vm *vm, t_process *process, t_instr *instr)
 		++i;
 	}
 	++vm->round.nbr_live;
+	++process->live_per_round;
 	process->last_live_cycle = vm->round.cycle;
 }
