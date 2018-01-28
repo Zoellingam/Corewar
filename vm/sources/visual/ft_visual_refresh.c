@@ -6,11 +6,11 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/28 15:31:45 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/28 16:30:19 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_visual.h"
+#include "ft_vm.h"
 #include <unistd.h>
 
 static int	ft_visual_refresh_get_color(t_visual const *this, int offset)
@@ -20,7 +20,7 @@ static int	ft_visual_refresh_get_color(t_visual const *this, int offset)
 	return (COLOR_PAIR(this->color[offset]));
 }
 
-void		ft_visual_refresh(t_visual const *this, int stealth)
+void		ft_visual_refresh(t_visual const *this, t_vm const *vm)
 {
 	int		i;
 	int		color;
@@ -31,11 +31,12 @@ void		ft_visual_refresh(t_visual const *this, int stealth)
 	{
 		color = ft_visual_refresh_get_color(this, i);
 		wattron(this->win, color);
-		val = (0 == stealth) ? this->arena[i] : 0;
+		val = (0 == vm->option.stealth) ? this->arena[i] : 0;
 		mvwprintw(this->win, 1 + (i >> 6), 2 + (i & 63) * 3, "%02hhx", val);
 		wattroff(this->win, color);
 		++i;
 	}
 	wrefresh(this->win);
-/*	usleep(this->refresh);	*/
+	ft_visual_refresh_game(this, vm);
+	usleep(this->refresh);
 }

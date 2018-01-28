@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/28 02:50:53 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/28 16:57:58 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ void		ft_vm_run(t_vm *this)
 		/* Refresh window */
 		if (this->option.display & OPTION_DISPLAY_SHOW_NCURSES)
 		{
-			ft_visual_refresh_game(&this->visual, this);
-			ft_visual_refresh(&this->visual, this->option.stealth);
+			ft_visual_refresh(&this->visual, this);
 		}
 	}
 	/* Close ncurse window */

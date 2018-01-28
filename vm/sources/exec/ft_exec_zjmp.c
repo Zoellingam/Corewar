@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/27 18:20:59 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/28 15:46:34 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ void		ft_exec_zjmp(t_vm *vm, t_process *process, t_instr *instr)
 	if (0 != process->carry)
 	{
 		instr->new_pc = ZJMP_SUCCEED;
+		vm->visual.pc_position[process->pc] = 0;
 		process->pc = LOOP(process->pc + arg1 % IDX_MOD);
+		vm->visual.pc_position[process->pc] = process->parent_number;
 		if (vm->option.display & OPTION_DISPLAY_SHOW_OPERATIONS)
 			ft_printf("P% 5d | zjmp %hd OK\n", process->number, arg1);
 	}

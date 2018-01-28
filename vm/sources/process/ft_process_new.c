@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/28 15:15:24 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/28 15:57:48 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@
 t_process	*ft_process_new(t_vm *vm, int champ_idx)
 {
 	extern t_op	g_op_tab[17];
+	static int 	pos = 0;
 	t_process	*p;
 	t_ch_opt	*ch;
 
 	p = ft_memalloc(sizeof(*p));
 	/* get offset pc */
-	p->pc = LOOP(MEM_SIZE / vm->option.ch_count * champ_idx);
+	p->pc = LOOP(MEM_SIZE / vm->option.ch_count * pos);
+	++pos;
 	/* read the file */
 	ch = vm->option.champion[champ_idx];
 	/* Setup process numbers */
@@ -43,7 +45,5 @@ t_process	*ft_process_new(t_vm *vm, int champ_idx)
 	p->reg[1] = -p->number;
 	/* Inc the total count of processes */
 	++vm->nb_process;
-	ft_log_open("test");
-	ft_log("process: [%d]\n", vm->nb_process);
 	return (p);
 }
