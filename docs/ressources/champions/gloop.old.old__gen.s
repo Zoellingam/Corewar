@@ -107,4 +107,4 @@ l_5:
 	st		r1, -472
 	zjmp	%:l_5
 
-; generated ;
+# generated #

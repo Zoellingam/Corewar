@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_loop.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+        */
+/*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/20 16:20:19 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/02/03 17:38:39 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	ft_label_del(t_list *it)
 	ft_memdel((void **)&ptr);
 }
 
-int			ft_parse_loop(t_parser *parser, t_lexer *lexer)
+void		ft_parse_loop(t_parser *parser, t_lexer *lexer)
 {
 	t_statement	*statement;
 	t_list		label_head;
@@ -42,7 +42,7 @@ int			ft_parse_loop(t_parser *parser, t_lexer *lexer)
 	/* A program is defined by a header and at least one instruction */
 	statement = ft_parse_statement(lexer, &label_head, &address);
 	if (0 == statement)
-		return (ret);
+		return ;
 	ft_list_add_tail(&statement->list, &parser->statement_head);
 	/* We parsed an instruction. The champion can now have any instruction he want */
 	while (0 != (statement = ft_parse_statement(lexer, &label_head, &address)))
@@ -55,10 +55,4 @@ int			ft_parse_loop(t_parser *parser, t_lexer *lexer)
 		When resolved, we can cleanup our label table. */
 	ft_parse_resolve_label(lexer, parser, &label_head);
 	ft_list_apply(&label_head, &ft_label_del);
-	/* Do not modify the return value if we parsed any errors */
-	if (0 != lexer->loc.error)
-		ft_fprintf(ft_stderr, "%d error(s) generated\n", lexer->loc.error);
-	else
-		ret = 1;
-	return (ret);
 }

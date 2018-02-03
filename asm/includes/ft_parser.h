@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/13 15:34:59 by igomez           ###   ########.fr       */
+/*   Updated: 2018/02/03 16:02:44 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct		s_parser
 
 void				ft_parser_del(t_parser *parser);
 int 				ft_parse(t_parser *parser, char const *file_name, char const *file_content);
-int					ft_parse_loop(t_parser *parser, t_lexer *lexer);
+void				ft_parse_loop(t_parser *parser, t_lexer *lexer);
 int					ft_parse_label(t_token *token, int address, t_list *head);
 t_statement			*ft_parse_statement(t_lexer *lexer, t_list *label_head, int *address);
 t_statement			*ft_parse_instruction(t_lexer *lexer, t_token *token);

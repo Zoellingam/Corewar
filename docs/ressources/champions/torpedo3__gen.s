@@ -51,4 +51,4 @@ l_2:
 	and		r1, %0, r1
 	zjmp	%326
 
-; generated ;
+# generated #

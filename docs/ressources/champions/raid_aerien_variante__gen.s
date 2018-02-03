@@ -129,4 +129,4 @@ l_19:
 	sti		r4, r5, r14
 	zjmp	%:l_20
 
-; generated ;
+# generated #

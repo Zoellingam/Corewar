@@ -94,4 +94,4 @@ l_5:
 	ld		%0, r7
 	zjmp	%:l_4
 
-; generated ;
+# generated #

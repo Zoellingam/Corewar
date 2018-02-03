@@ -115,4 +115,4 @@ l_14:
 	sti		r15, r8, r2
 	zjmp	%125
 
-; generated ;
+# generated #

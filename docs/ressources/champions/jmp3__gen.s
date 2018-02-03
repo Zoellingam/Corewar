@@ -108,4 +108,4 @@ l_12:
 	sti		r5, r4, %430
 	zjmp	%:l_12
 
-; generated ;
+# generated #

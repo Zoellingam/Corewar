@@ -78,4 +78,4 @@ l_10:
 	st		r0, 1000
 	zjmp	%:l_0
 
-; generated ;
+# generated #

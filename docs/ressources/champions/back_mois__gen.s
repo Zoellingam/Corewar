@@ -104,4 +104,4 @@ l_5:
 	sti		r1, r2, r3
 	sti		r4, r2, r5
 
-; generated ;
+# generated #

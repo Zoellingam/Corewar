@@ -53,4 +53,4 @@ l_2:
 	ld		%0, r7
 	zjmp	%:l_3
 
-; generated ;
+# generated #

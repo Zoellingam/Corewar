@@ -64,4 +64,4 @@ l_8:
 	st		r3, 10
 	live	%0
 
-; generated ;
+# generated #

@@ -81,4 +81,4 @@ l_9:
 	xor		r16, r16, r16
 	zjmp	%:l_8
 
-; generated ;
+# generated #

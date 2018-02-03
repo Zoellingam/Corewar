@@ -36,4 +36,4 @@ l_4:
 l_3:
 	zjmp	%:l_4
 
-; generated ;
+# generated #

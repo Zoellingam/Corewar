@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/13 20:51:51 by igomez           ###   ########.fr       */
+/*   Updated: 2018/02/03 12:55:46 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void		ft_disass(t_disass *dsm)
 	uint8_t			*pc;
 	uint32_t		byte_pos;
 
-	ft_timer_start(&dsm->benchmark[0]);
 	/* read header */
 	if (EXIT_FAILURE == ft_read_header(dsm))
 		return ;
@@ -76,5 +75,4 @@ void		ft_disass(t_disass *dsm)
 		pc = instruction_list->instr->new_pc;
 	}
 	ft_memdel((void **)&data);
-	ft_timer_stop(&dsm->benchmark[0]);
 }

@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   timer.h                                            :+:      :+:    :+:   */
+/*   ft_print_location.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
+/*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/04 00:37:09 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/02/03 17:48:39 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TIMER_H
-# define FT_TIMER_H
+#include "ft_printf.h"
+#include "ft_lexer.h"
 
-# include <time.h>
-
-typedef struct	s_timer
-{	
-	clock_t		in;
-	clock_t		out;
-}				t_timer;
-
-void	ft_timer_start(t_timer *timer);
-
-void	ft_timer_stop(t_timer *timer);
-
-float	ft_timer_diff(t_timer *timer);
-
-#endif
+int		ft_print_location(t_lexer *lexer)
+{
+	ft_fprintf(ft_stderr, "\033[31m-[File: %s] - [LINE %d] [POS %d]\033[0m\n",
+		lexer->loc.file, lexer->loc.line, lexer->loc.pos);
+	++lexer->error;
+	return (0);
+}

@@ -53,4 +53,4 @@ l_4:
 	add		r12, r13, r12
 	zjmp	%:l_4
 
-; generated ;
+# generated #

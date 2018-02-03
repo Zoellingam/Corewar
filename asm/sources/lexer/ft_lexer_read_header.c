@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lexer_read_header.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+        */
+/*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/20 16:08:47 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/02/03 17:45:45 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,23 @@ static int	ft_lexer_read_name(t_lexer *lexer, t_header *header)
 		token = ft_lexer_read(lexer);
 	if (0 == token || TK_NAME != token->kind)
 	{
-		ft_error(&lexer->loc, token, "'%s' directive is missing\n", NAME_CMD_STRING);
-		return (0);
+		ft_fprintf(ft_stderr, "Header name: Missing '%s' directive\n", NAME_CMD_STRING);
+		return (ft_print_location(lexer));
 	}
 	/* Read "string" correctly quoted */
 	token = ft_lexer_read(lexer);
 	if (0 == token || TK_STRING != token->kind || PROG_NAME_LENGTH < token->data->len)
 	{
-		ft_error(&lexer->loc, token, "Header program name\n");
-		return (0);
+		ft_fprintf(ft_stderr, "Header name: error\n");
+		return (ft_print_location(lexer));
 	}
 	ft_strcpy(header->prog_name, token->data->str);
 	/* Read '\n' separator */
 	token = ft_lexer_read(lexer);
 	if (0 == token || TK_ENDLINE != token->kind)
 	{
-		ft_error(&lexer->loc, token, "Endline separator is missing\n");
-		return (0);
+		ft_fprintf(ft_stderr, "Header name: Missing endline separator\n");
+		return (ft_print_location(lexer));
 	}
 	return (1);
 }
@@ -58,23 +58,23 @@ static int	ft_lexer_read_comment(t_lexer *lexer, t_header *header)
 		token = ft_lexer_read(lexer);
 	if (0 == token || TK_COMMENT != token->kind)
 	{
-		ft_error(&lexer->loc, token, "'%s' directive is missing\n", COMMENT_CMD_STRING);
-		return (0);
+		ft_fprintf(ft_stderr, "Header comment: Missing '%s' directive\n", COMMENT_CMD_STRING);
+		return (ft_print_location(lexer));
 	}
 	/* Read "string" correctly quoted */
 	token = ft_lexer_read(lexer);
 	if (0 == token || TK_STRING != token->kind || COMMENT_LENGTH < token->data->len)
 	{
-		ft_error(&lexer->loc, token, "Header comment\n");
-		return (0);
+		ft_fprintf(ft_stderr, "Header comment: error\n");
+		return (ft_print_location(lexer));
 	}
 	ft_strcpy(header->comment, token->data->str);
 	/* Read '\n' separator */
 	token = ft_lexer_read(lexer);
 	if (0 == token || TK_ENDLINE != token->kind)
 	{
-		ft_error(&lexer->loc, token, "Endline separator is missing\n");
-		return (0);
+		ft_fprintf(ft_stderr, "Header comment: Missing endline separator\n");
+		return (ft_print_location(lexer));
 	}
 	return (1);
 }

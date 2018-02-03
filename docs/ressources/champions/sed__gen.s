@@ -23,4 +23,4 @@ l_3:
 	and		r2, %0, r2
 	zjmp	%:l_3
 
-; generated ;
+# generated #

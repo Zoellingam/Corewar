@@ -80,4 +80,4 @@ l_5:
 	sti		r11, r15, r5
 	zjmp	%:l_6
 
-; generated ;
+# generated #

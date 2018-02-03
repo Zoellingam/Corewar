@@ -49,4 +49,4 @@ l_6:
 	live	%1
 	live	%1
 
-; generated ;
+# generated #

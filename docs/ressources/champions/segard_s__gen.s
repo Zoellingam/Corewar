@@ -61,4 +61,4 @@ l_8:
 	fork	%:l_0
 	zjmp	%:l_8
 
-; generated ;
+# generated #

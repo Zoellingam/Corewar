@@ -72,4 +72,4 @@ l_3:
 	fork	%75
 	live	%77
 
-; generated ;
+# generated #

@@ -75,4 +75,4 @@ l_10:
 	sti		r5, r6, r7
 	live	%1
 
-; generated ;
+# generated #

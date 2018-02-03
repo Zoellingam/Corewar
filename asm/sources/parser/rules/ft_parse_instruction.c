@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_instruction.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+        */
+/*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/20 21:59:52 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/02/03 17:43:49 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static int		ft_parse_instruction_separator(t_lexer *lexer)
 	token = ft_lexer_read(lexer);
 	if (0 == token || TK_SEPARATOR != token->kind)
 	{
-		ft_error(&lexer->loc, token, "Separator is missing\n");
-		return (1);
+		ft_fprintf(ft_stderr, "Separator is missing\n");
+		return (ft_print_location(lexer));
 	}
-	return (0);
+	return (1);
 }
 
 static char		**ft_parse_instruction_init(t_lexer *lexer, t_token *instr)
@@ -50,7 +50,7 @@ static char		**ft_parse_instruction_init(t_lexer *lexer, t_token *instr)
 	{
 		/* If this is not the first arguments of the instruction,
 		 	we expect a ',' separator token */
-		if (0 != i && 0 != ft_parse_instruction_separator(lexer))
+		if (0 != i && 0 == ft_parse_instruction_separator(lexer))
 			return (0);
 
 		/* Get the next token, It have to match op.h arguments type
@@ -58,7 +58,8 @@ static char		**ft_parse_instruction_init(t_lexer *lexer, t_token *instr)
 		token = ft_lexer_read(lexer);
 		if (0 == token || 0 == (op->arg_types[i] & token->kind))
 		{
-			ft_error(&lexer->loc, token, "Argument is invalide\n");
+			ft_fprintf(ft_stderr, "Argument is invalide\n");
+			ft_print_location(lexer);
 			return (0);
 		}
 
@@ -71,7 +72,8 @@ static char		**ft_parse_instruction_init(t_lexer *lexer, t_token *instr)
 	token = ft_lexer_read(lexer);
 	if (0 != token && TK_ENDLINE != token->kind)
 	{
-		ft_error(&lexer->loc, instr, "Endline separator is missing");
+		ft_fprintf(ft_stderr, "Endline separator is needed\n");
+		ft_print_location(lexer);
 		return (0);
 	}
 

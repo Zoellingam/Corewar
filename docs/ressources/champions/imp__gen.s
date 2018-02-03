@@ -31,4 +31,4 @@ l_1:
 	and		r1, %0, r1
 	zjmp	%:l_4
 
-; generated ;
+# generated #

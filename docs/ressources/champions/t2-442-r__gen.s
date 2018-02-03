@@ -61,4 +61,4 @@ l_3:
 	xor		r2, r2, r2
 	zjmp	%:l_4
 
-; generated ;
+# generated #

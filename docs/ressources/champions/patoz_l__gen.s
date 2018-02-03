@@ -37,4 +37,4 @@ l_3:
 	lfork	%:l_3
 	sti		r1, %1, %1
 
-; generated ;
+# generated #

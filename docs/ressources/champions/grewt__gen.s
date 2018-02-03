@@ -51,4 +51,4 @@ l_6:
 	live	%2
 	zjmp	%203
 
-; generated ;
+# generated #

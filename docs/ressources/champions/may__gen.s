@@ -75,4 +75,4 @@ l_1:
 	st		r9, 361
 	zjmp	%:l_1
 
-; generated ;
+# generated #

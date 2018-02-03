@@ -12,4 +12,4 @@ l_1:
 	xor		r4, r4, r4
 	zjmp	%:l_1
 
-; generated ;
+# generated #

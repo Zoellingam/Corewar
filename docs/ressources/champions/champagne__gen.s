@@ -16,4 +16,4 @@ l_1:
 	fork	%:l_1
 	and		%0, %0, r6
 
-; generated ;
+# generated #

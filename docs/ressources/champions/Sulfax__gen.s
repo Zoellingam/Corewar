@@ -34,4 +34,4 @@ l_3:
 	sti		r15, r8, r2
 	zjmp	%493
 
-; generated ;
+# generated #

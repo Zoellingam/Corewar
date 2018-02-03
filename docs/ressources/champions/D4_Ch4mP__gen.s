@@ -32,4 +32,4 @@ l_4:
 	live	%1
 	zjmp	%:l_4
 
-; generated ;
+# generated #

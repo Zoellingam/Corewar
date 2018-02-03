@@ -62,4 +62,4 @@ l_1:
 	ld		%0, r15
 	zjmp	%:l_1
 
-; generated ;
+# generated #

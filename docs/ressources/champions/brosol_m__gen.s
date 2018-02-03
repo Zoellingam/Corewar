@@ -10,4 +10,4 @@ l_1:
 	fork	%:l_1
 	zjmp	%:l_1
 
-; generated ;
+# generated #

@@ -67,4 +67,4 @@ l_6:
 	zjmp	%:l_5
 	zjmp	%0
 
-; generated ;
+# generated #

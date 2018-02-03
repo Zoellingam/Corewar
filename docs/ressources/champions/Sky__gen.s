@@ -49,4 +49,4 @@ l_3:
 	sti		r1, r2, r3
 	live	%1
 
-; generated ;
+# generated #

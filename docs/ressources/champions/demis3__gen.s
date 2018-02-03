@@ -54,4 +54,4 @@ l_1:
 	sti		r1, %-236, %1
 	zjmp	%:l_1
 
-; generated ;
+# generated #

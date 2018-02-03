@@ -6,11 +6,12 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/28 15:21:58 by igomez           ###   ########.fr       */
+/*   Updated: 2018/02/03 12:49:27 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "private/ft_pf_impl.h"
+#include "ft_string.h"
 
 typedef struct			s_pf_color
 {
@@ -56,7 +57,7 @@ static int	ft_pf_lbracket(t_pf_buf *p, char **cursor, int *sp)
 		while (i < (sizeof(g_pf_color) / sizeof(0[g_pf_color])))
 		{
 			clr = &g_pf_color[i++];
-			if (0 == strncmp(*cursor, clr->format, clr->flen))
+			if (0 == ft_strncmp(*cursor, clr->format, clr->flen))
 			{
 				if (':' == (*cursor)[clr->flen] || '}' == (*cursor)[clr->flen])
 				{

@@ -104,4 +104,4 @@ l_11:
 	xor		r16, r16, r16
 	zjmp	%:l_11
 
-; generated ;
+# generated #

@@ -78,4 +78,4 @@ l_7:
 	xor		r3, r3, r3
 	zjmp	%113
 
-; generated ;
+# generated #

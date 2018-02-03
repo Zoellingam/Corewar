@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/27 17:00:27 by igomez           ###   ########.fr       */
+/*   Updated: 2018/02/03 17:38:35 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static int	ft_parse_resolve_lookup(t_lexer *lexer, t_statement *st, t_list *head
 			if (0 == it)
 			{
 				/* Label does not exist. Abort */
-				ft_error(&lexer->loc, st->token[i], "Label %s is missing", arg->data);
-				return (0);
+				ft_fprintf(ft_stderr, "Label %s is missing\n", arg->data);
+				return (ft_print_location(lexer));
 			}
 			diff = C_LABEL(it)->address - (st)->address;
 			/* Update the token value. It now equals the diff

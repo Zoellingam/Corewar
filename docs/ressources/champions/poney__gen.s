@@ -19,4 +19,4 @@ l_1:
 	fork	%:l_2
 	zjmp	%:l_3
 
-; generated ;
+# generated #

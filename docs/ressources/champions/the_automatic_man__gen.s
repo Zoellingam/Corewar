@@ -68,4 +68,4 @@ l_4:
 	sti		r2, r3, r4
 	ld		%479, r4
 
-; generated ;
+# generated #

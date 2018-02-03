@@ -1,49 +1,27 @@
 #!/bin/bash
 
-# setup constants
-typeset -r FILE_IN="/tmp/test.s";
-typeset -r FILE_OUT="/tmp/test.cor";
-typeset -r FILE_OUT_CPY="/tmp/test.cor.bak";
+echo "Setup for test";
 
-# set up binary
-[ ! -f "asm/asm" ] && make -j asm;
+make -j asm;
 
-# loop over test files
-for i in $(find docs/ressources/champions -type f); do
+find . -type f -name "*.cor" -exec rm -f {} \;
 
-	# remove temporary files
-	[ -f "$FILE_IN" ] && rm -f "$FILE_IN";
-	[ -f "$FILE_OUT" ] && rm -f "$FILE_OUT";
-	[ -f "$FILE_OUT_CPY" ] && rm -f "$FILE_OUT_CPY";
+cp -R docs/ressources/champions our_ch;
+cp -R docs/ressources/champions zaz_ch;
 
-	# copy test file to tmp
-	cp "$i" "$FILE_IN";
-	printf "${i}: ";
+find our_ch -type f -name "*.s" -exec ./asm/asm {} \; > /dev/null 2> /dev/null
+find zaz_ch -type f -name "*.s" -exec ./docs/ressources/asm {} \; > /dev/null 2> /dev/null
 
-	# exec student asm
-	./asm/asm "$FILE_IN" > /dev/null 2> /dev/null;
-	if [ -f "$FILE_OUT" ]; then
-		# make a copy and exec zaz asm
-		cp "$FILE_OUT" "$FILE_OUT_CPY";
-		./docs/ressources/asm "$FILE_IN" > /dev/null 2> /dev/null;
-		if [ -f "$FILE_OUT" ]; then
-			# diff files
-			if [ "$(diff "$FILE_OUT" "$FILE_OUT_CPY")" == "" ]; then
-				printf "\033[32;1mOK\033[0m\n"
-			else
-				printf "\033[31;1moutput differs\033[0m: [MY:$(cat $FILE_OUT_CPY | wc -c) bytes] [ZAZ:$(cat $FILE_OUT | wc -c) bytes]\n";
-			fi
-		else
-			printf "\033[31;1mzaz asm failed\033[0m\n";
-		fi
+for i in $(ls our_ch/*.cor); do
+	printf "%s:" "$(basename "$i")";
+	hexdump "our_ch/$(basename $i)" > "our_ch/res";
+	hexdump "zaz_ch/$(basename $i)" > "zaz_ch/res";
+	if [ "" == "$(diff "our_ch/res" "zaz_ch/res")" ]; then
+		printf "\033[32;1mgood\n\033[0m";
 	else
-		# asm failed. Try zaz asm as reference
-		printf " try zaz asm: ";
-		./docs/ressources/asm "$FILE_IN" > /dev/null;
-		if [ -f "$FILE_OUT" ]; then
-			printf "\033[31;1mour asm failed\033[0m\n";
-		else
-			printf "\033[31;1mzaz asm failed\033[0m\n";
-		fi
+		printf "\033[31;1mbad\n\033[0m";
 	fi
 done
+
+rm -rf our_ch;
+rm -rf zaz_ch;

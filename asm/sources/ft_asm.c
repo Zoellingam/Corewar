@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/27 17:01:48 by igomez           ###   ########.fr       */
+/*   Updated: 2018/02/03 16:04:20 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void		ft_asm(char const *file_in, char const *file_content, int dump)
 	int			fd_out;
 
 	/* Parse the file_content */
-	if (0 != ft_parse(&parser, file_in, file_content))
+	if (0 == ft_parse(&parser, file_in, file_content))
 	{
 		if (0 != dump)
 			ft_assemble_dump(&parser);

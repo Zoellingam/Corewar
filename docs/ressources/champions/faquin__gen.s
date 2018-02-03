@@ -40,4 +40,4 @@ l_4:
 	fork	%:l_5
 	zjmp	%:l_6
 
-; generated ;
+# generated #

@@ -56,4 +56,4 @@ l_6:
 	sti		r10, r2, r3
 	zjmp	%-3
 
-; generated ;
+# generated #

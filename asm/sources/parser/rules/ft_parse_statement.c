@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_statement.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+        */
+/*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/20 21:59:46 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/02/03 17:47:15 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_asm.h"
 # include "ft_printf.h"
 # include "ft_parser.h"
+# include "ft_lexer.h"
 
 t_statement	*ft_parse_statement(t_lexer *lexer, t_list *label_head, int *address)
 {
@@ -43,7 +44,8 @@ t_statement	*ft_parse_statement(t_lexer *lexer, t_list *label_head, int *address
 			/* Check if label is already defined */
 			if (0 == ft_parse_label(token, *address, label_head))
 			{
-				ft_error(&lexer->loc, token, "Label %s is already defined", token->data->str);
+				ft_fprintf(ft_stderr, "Label %s is already defined\n", token->data->str);
+				ft_print_location(lexer);
 				return (0);
 			}
 			/* Ask for a new token */
@@ -56,16 +58,18 @@ t_statement	*ft_parse_statement(t_lexer *lexer, t_list *label_head, int *address
 	/* Reject token if it is not an instruction */
 	if (TK_INSTRUCTION != token->kind)
 	{
-		ft_error(&lexer->loc, token, "Unknow instruction: '%s'", token->data->str);
+		ft_fprintf(ft_stderr, "Unknow instruction %s\n", token->data->str);
+		ft_print_location(lexer);
 		return (0);
 	}
 	/* Try to parse the instruction since we skipped useless tokens */
 	st = ft_parse_instruction(lexer, token);
-	if (0 == st)
-		return (0);
-	/* set the instruction address */
-	st->address = *address;
-	/* Setup the address of the next instruction */
-	*address += st->instr->instr_size;
+	if (0 != st)
+	{
+		/* set the instruction address */
+		st->address = *address;
+		/* Setup the address of the next instruction */
+		*address += st->instr->instr_size;
+	}
 	return (st);
 }

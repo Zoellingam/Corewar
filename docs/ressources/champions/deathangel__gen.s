@@ -74,4 +74,4 @@ l_9:
 l_8:
 	zjmp	%:l_9
 
-; generated ;
+# generated #

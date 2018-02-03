@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/13 15:39:29 by igomez           ###   ########.fr       */
+/*   Updated: 2018/02/03 17:44:37 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,8 @@ typedef enum		e_token_kind
 
 typedef struct		s_location
 {
-	char			**tab;
 	char const		*file;
 	char const		*pc;
-	int				error;
 	int				line;
 	int				pos;
 }					t_location;
@@ -62,6 +60,7 @@ typedef struct		s_lexer
 {
 	t_location		loc;
 	t_list			token_head;
+	int 			error;
 }					t_lexer;
 
 typedef	t_token		*(*t_lex_rule)(t_location *);
@@ -84,5 +83,7 @@ t_token				*ft_lex_header(t_location *loc);
 
 t_token 			*ft_token_new(char const *data, size_t len, int kind, t_location *loc);
 void				ft_token_del(t_list *it);
+
+int					ft_print_location(t_lexer *lexer);
 
 #endif

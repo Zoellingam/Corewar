@@ -66,4 +66,4 @@ l_4:
 	live	%42
 	zjmp	%470
 
-; generated ;
+# generated #

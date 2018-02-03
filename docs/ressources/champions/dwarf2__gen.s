@@ -58,4 +58,4 @@ l_4:
 	and		r1, %0, r1
 	zjmp	%:l_7
 
-; generated ;
+# generated #

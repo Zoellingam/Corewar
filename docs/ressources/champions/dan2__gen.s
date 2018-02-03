@@ -70,4 +70,4 @@ l_11:
 	fork	%:l_11
 	zjmp	%:l_1
 
-; generated ;
+# generated #

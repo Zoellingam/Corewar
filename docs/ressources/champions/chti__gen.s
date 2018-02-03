@@ -48,4 +48,4 @@ l_5:
 	fork	%:l_2
 	zjmp	%190
 
-; generated ;
+# generated #

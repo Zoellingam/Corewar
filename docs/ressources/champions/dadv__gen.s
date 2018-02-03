@@ -82,4 +82,4 @@ l_13:
 	zjmp	%:l_15
 	lfork	%0
 
-; generated ;
+# generated #

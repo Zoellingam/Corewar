@@ -52,4 +52,4 @@ l_3:
 	sti		r8, r11, r13
 	zjmp	%176
 
-; generated ;
+# generated #

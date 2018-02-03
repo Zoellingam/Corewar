@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_string.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
+/*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/03 13:21:13 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/02/03 12:21:28 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -592,6 +592,28 @@ size_t  	ft_strspn(char const *src, char const *accept);
  *             spanned.
  */
 size_t  	ft_strcspn(char const *src, char const *reject);
+
+/**
+ * @brief      String tokens
+ * 
+ * details     The ft_strtok() function is used to isolate sequential
+ * 			   tokens in a null-terminated string, str. These tokens
+ * 			   are separated in the string by at least one of the
+ * 			   characters in sep. The first time that ft_strtok()
+ *    		   is called, str should be specified; subsequent calls, 
+ *    		   wishing to obtain further tokens from the same string,
+ *    		   should pass a null pointer instead. The separator string,
+ *     		   sep, must be supplied each time, and may change between calls.
+ *
+ * @param      p	 	The string to search for tokens
+ * @param      delim	The delimiting characters
+ *
+ * @return      The ft_strtok() function return a pointer to the begin-
+ *              ning  of each  subsequent token  in the  string,  after
+ *              replacing  the token itself  with a NUL character. When
+ *              no more tokens remain, a null pointer is returned.
+ */
+char		*ft_strtok(char *p, char const *delim);
 
 /**
  * @brief      Join strings

@@ -59,4 +59,4 @@ l_2:
 l_4:
 	sti		r1, r2, r3
 
-; generated ;
+# generated #

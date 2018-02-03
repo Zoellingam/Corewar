@@ -31,4 +31,4 @@ l_1:
 	live	%1
 	zjmp	%:l_0
 
-; generated ;
+# generated #

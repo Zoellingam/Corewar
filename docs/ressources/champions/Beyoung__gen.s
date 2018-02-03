@@ -40,4 +40,4 @@ l_1:
 	live	%4
 	zjmp	%:l_1
 
-; generated ;
+# generated #

@@ -50,4 +50,4 @@ l_1:
 	xor		r16, r16, r16
 	zjmp	%:l_1
 
-; generated ;
+# generated #

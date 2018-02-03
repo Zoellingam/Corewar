@@ -90,4 +90,4 @@ l_9:
 	live	%0
 	zjmp	%321
 
-; generated ;
+# generated #

@@ -70,4 +70,4 @@ l_5:
 	and		%0, %0, r5
 	zjmp	%:l_5
 
-; generated ;
+# generated #

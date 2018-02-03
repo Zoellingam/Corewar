@@ -49,4 +49,4 @@ l_2:
 	sti		r1, %:l_3, %-153
 	zjmp	%:l_2
 
-; generated ;
+# generated #
