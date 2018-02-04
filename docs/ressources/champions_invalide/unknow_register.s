@@ -4,7 +4,7 @@
 l_0:
 	st		r0, 19
 	ld		%0, r15
-	fork	%:l_1
+	fork	%:l_1, 32
 	zjmp	%:l_2
 
 l_1:

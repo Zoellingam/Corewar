@@ -6,7 +6,7 @@
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/28 22:45:07 by igomez           ###   ########.fr       */
+/*   Updated: 2018/02/04 14:26:15 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,6 @@ void		ft_exec_ld(t_vm *vm, t_process *process, t_instr *instr)
 		arg1 = ft_arena_get_int32(vm->visual.board.arena, process->pc + arg1 % IDX_MOD);
 	/* 2nd argument: T_REG */
 	arg2 = instr->args[1].data;
-
-/*
-	ft_printf("LD: arg1: %d (%02b) (%08x), arg2: %d (%02b)\n",
-		arg1,
-		instr->args[0].type,
-		*(unsigned int *)(vm->visual.arena + process->pc),
-		instr->args[1].data,
-		instr->args[1].type);
-*/
-		
 	/* Load the byte at the indexed position */
 	process->reg[arg2] = arg1;
 	/* Update the carry flag */
