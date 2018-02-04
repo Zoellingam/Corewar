@@ -2,6 +2,7 @@
 * [Subject](#subject)
 * [Method](#method)
 * [Help](#help)
+* ![Final Grade](img/grade.png)
 
 # Subject   :pushpin:
 
@@ -76,7 +77,8 @@ When a player wins, the machine must display **"The player NB_OF_PLAYER(NAME_OF_
 
 # Method
 
-The projet is subject to interpretation. To help us an example of an Assembler and the Corewar were given. To be rigorous, our team decided to *mirror the outputs* of the model. Furthermore, it allowed us to generate *unit tests* for the correction. But while we were working, we found *several difference* between the subject and the model we had to reproduce. For clarity you will found in the next chapter some adjustments we made.
+The projet is subject to interpretation. To help us an example of an Assembler and the Corewar were given. To be rigorous, our team decided to *mirror the outputs* of the model. Furthermore, it allowed us to generate *unit tests* for the correction. But while we were working, we found *several difference* between the subject and the model we had to reproduce.
+The current version of the project is full of comments for better understanding.
 
 ### Arena
 
