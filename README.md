@@ -86,6 +86,8 @@ The current version of the project is full of comments for better understanding.
 We build a state machine for the parsing. The virtual machine is a simple array of size MEM_SIZE, where the Warriors data are copied.
 Then a loop is running until there is no process left. Each one of them is stored in a circular doubly linked list. At each cycle a routine is applied and a Warrior can execute its instruction when its exec_cycle meets the current cycle. At each *CYCLE_TO_DIE* cycle, a round check is made : every Warrior who did not declared they are alive is killed. Then the next cycle to die is updated if necessary.
 
+<img src="img/arena.gif" width="900" height="600" />
+
 ## Credits
 
 - *[42 profile](https://profile.intra.42.fr/users/mvillemi) - [Linkedin](https://www.linkedin.com/in/mai-line-villemin-549773a5/) - [Github](https://github.com/LineChan)* - Villemin Mai Line
