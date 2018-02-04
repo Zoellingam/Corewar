@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+         #
+#    By: igomez <igomez@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2018/01/20 22:25:22 by Zoellingam       ###   ########.fr        #
+#    Updated: 2018/02/04 14:50:25 by igomez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,18 +62,15 @@ all:
 	@make $(NAME)
 
 $(NAME): $(O_FILES)
-	@make -C "$(DLIB)";
 	@gcc $(C_FLAGS) $(INCLUDES) $(LIBS) -o $@ $(O_FILES) && $(PRINT_GREEN) $@ || exit
 
 $(OBJS)/%.o: %.c
 	@gcc $(C_FLAGS) $(INCLUDES) -o $@ -c $< && $(eval COUNT+=1) $(PRINT_RED) $< || exit
 
 clean:
-	@make -C "$(DLIB)" clean;
 	@rm -rf $(O_FILES) $(OBJS) 2> /dev/null
 
 fclean: clean
-	@make -C "$(DLIB)" fclean;
 	@rm -f "$(NAME)"
 
 re: fclean all
