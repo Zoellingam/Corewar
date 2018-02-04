@@ -2,7 +2,8 @@
 * [Subject](#subject)
 * [Method](#method)
 * [Help](#help)
-* ![Final Grade](img/grade.png)
+* Final Grade:
+<img src="img/grade.png" width="100" height="100" />
 
 # Subject   :pushpin:
 
